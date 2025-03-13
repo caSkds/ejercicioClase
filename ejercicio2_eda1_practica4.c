@@ -1,36 +1,36 @@
-/*2) La Facultad de Ingeniería necesita un programa para sacar el promedio
-de 3 exámenes parciales de N alumnos de la materia de Estructura de
+/*2) La Facultad de Ingenierï¿½a necesita un programa para sacar el promedio
+de 3 exï¿½menes parciales de N alumnos de la materia de Estructura de
 datos y Algoritmos I.
-Aparecerá primero el siguiente menú:
-1)Ingresar el número de alumnos
+Aparecerï¿½ primero el siguiente menï¿½:
+1)Ingresar el nï¿½mero de alumnos
 2)salir
-Ingresar el número de alumnos:
-Se ingresarán a cuantos alumnos se le pedirán sus calificaciones.
-Después de haber ingresado cuantos alumnos, se implementará el
-siguiente submenú:
-Menú Calificaciones
+Ingresar el nï¿½mero de alumnos:
+Se ingresarï¿½n a cuantos alumnos se le pedirï¿½n sus calificaciones.
+Despuï¿½s de haber ingresado cuantos alumnos, se implementarï¿½ el
+siguiente submenï¿½:
+Menï¿½ Calificaciones
 a) Ingresar Calificaciones
 b) Calcular promedio
 c) Alumnos Exentos
 d) Modificar Calificaciones
 e) Salir
 Ingresar calificaciones:
-Se ingresarán las calificaciones de cada alumno, recordar que las
+Se ingresarï¿½n las calificaciones de cada alumno, recordar que las
 calificaciones solo pueden ser de 0-10, si se ingresa otro valor diferente a
-este, se mandará el mensaje: “Calificación no válida”.
+este, se mandarï¿½ el mensaje: ï¿½Calificaciï¿½n no vï¿½lidaï¿½.
 Calcular promedio:
 Calculara el promedio de los alumnos. Si no hay calificaciones(no se ha
-ingresado a la opción a) mostrará el mensaje “Ingrese primero a la opción
-a C:”
+ingresado a la opciï¿½n a) mostrarï¿½ el mensaje ï¿½Ingrese primero a la opciï¿½n
+a C:ï¿½
 Alumnos Exentos:
-Mostrará a los alumnos exentos de la materia, recordar que la materia se
-exenta con 6.Si no hay calificaciones(no se ha ingresado a la opción a)
-mostrará el mensaje “Ingrese primero a la opción a C:”
+Mostrarï¿½ a los alumnos exentos de la materia, recordar que la materia se
+exenta con 6.Si no hay calificaciones(no se ha ingresado a la opciï¿½n a)
+mostrarï¿½ el mensaje ï¿½Ingrese primero a la opciï¿½n a C:ï¿½
 Modificar Calificaciones:
-Se escogerá a un alumno que desee modificar alguno de sus exámenes, se
-mostrará el antes y después de la modificación. Si no hay calificaciones(no
-se ha ingresado a la opción a) mostrará el mensaje “Ingrese primero a la
-opción a C:”*/
+Se escogerï¿½ a un alumno que desee modificar alguno de sus exï¿½menes, se
+mostrarï¿½ el antes y despuï¿½s de la modificaciï¿½n. Si no hay calificaciones(no
+se ha ingresado a la opciï¿½n a) mostrarï¿½ el mensaje ï¿½Ingrese primero a la
+opciï¿½n a C:ï¿½*/
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -88,7 +88,7 @@ int main()
                 }
                 else
                 {
-                    printf("Ingrese primero a la opción a C:");
+                    printf("Ingrese primero a la opciÃ³n a C:");
                 }
                 break;
             case 'c':
@@ -98,7 +98,7 @@ int main()
                 }
                 else
                 {
-                    printf("Ingrese primero a la opción a C:");
+                    printf("Ingrese primero a la opciÃ³n a C:");
                 }
                 break;
             case 'd':
@@ -108,7 +108,7 @@ int main()
                 }
                 else
                 {
-                    printf("Ingrese primero a la opción a C:");
+                    printf("Ingrese primero a la opciÃ³n a C:");
                 }
                 break;
             case 'e':
