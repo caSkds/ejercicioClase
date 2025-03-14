@@ -18,16 +18,43 @@ int pop(struct pila *pilaPop){
         return 0;
     }
 }
-int peek(struct pila *pilaPop){
-    if(pilaPop->tope==-1){
+int peek(struct pila *pilaPeek){
+    if(pilaPeek->tope==-1){
         printf("Pila vacia\n");
         return -1;
     }else{
-        printf("El tope es: %d\n",pilaPop->elementos[pilaPop->tope]);
+        printf("El tope es: %d\n",pilaPeek->elementos[pilaPeek->tope]);
         
-        return pilaPop->elementos[pilaPop->tope];
+        return pilaPeek->elementos[pilaPeek->tope];
     }
 }
+int full(struct pila *pilaFull){
+    if (pilaFull->tope == 9){
+        printf("Pila llena\n");
+        return 1;
+    }
+    else{
+        printf("Pila no llena \n");
+        return 0;
+    }
+}
+int empty(struct pila *pilaEmpty){
+    if (pilaEmpty->tope == -1){
+        printf("Pila vacía\n");
+        return 1;
+    }
+    else{
+        printf("Pila no vacía \n");
+        return 0;
+    }
+}
+int size(struct pila *pilaSize){
+    int size = pilaSize->tope +1;
+    printf("Tamaño de la pila: %d\n", size);
+        return size;
+    
+}
+
 
 int push(struct pila *pilaPush,int nuevoDato){
     if(pilaPush->tope==9){
