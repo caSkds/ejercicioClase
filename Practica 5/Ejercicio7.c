@@ -46,11 +46,11 @@ int front (struct cola *frontQueue){
 int empty (struct cola *emptyQueue){
     if (emptyQueue ->size == 0){
         printf("La cola está vacía\n");
-        return 0;
+        return 1;
     }
     else{
         printf("La cola no está vacía\n");
-        return 1;
+        return 0;
     }
 
 }
