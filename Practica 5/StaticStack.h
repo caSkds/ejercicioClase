@@ -1,5 +1,5 @@
-#ifndef STATIC_QUEUE_H
-#define STATIC_QUEUE_H
+#ifndef STATIC_STACK_H
+#define STATIC_STACK_H
 #include<stdio.h>  
 #include <stdlib.h>
 void crearPila(struct pila *);
