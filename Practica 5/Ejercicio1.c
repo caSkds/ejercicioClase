@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "StaticQueue.h"
+#include "StaticStack.h"
 
 
 void crearPila(struct pila *pilaNueva){
@@ -49,9 +49,9 @@ int empty(struct pila *pilaEmpty){
     }
 }
 int size(struct pila *pilaSize){
-    int size = pilaSize->tope +1;
-    printf("Tamaño de la pila: %d\n", size);
-        return size;
+    int stackSize = pilaSize->tope +1;
+    printf("Tamaño de la pila: %d\n", stackSize);
+        return stackSize;
     
 }
 
