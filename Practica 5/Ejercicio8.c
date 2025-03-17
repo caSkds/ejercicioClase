@@ -21,7 +21,7 @@ int encolar(struct cola *colaEncolar, int nuevoDato) {
 }
 
 //  va a verifica elementos repetidos entre dos colas
-void Repetidos(struct cola *cola1, struct cola *cola2) {
+void repetidos(struct cola *cola1, struct cola *cola2) {
     int i, j;
     int elementosCola1[5], elementosCola2[5];
 
@@ -51,7 +51,7 @@ void Repetidos(struct cola *cola1, struct cola *cola2) {
         encolar(&cola2, dato);
     }
 
-    Repetidos(&cola1, &cola2);
+    repetidos(&cola1, &cola2);
 
     return 0;
 }
