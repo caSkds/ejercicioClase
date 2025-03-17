@@ -17,6 +17,6 @@ int front (struct cola *);
 int empty (struct cola *);
 int full (struct cola *);
 int sizeC (struct cola *);
-void Repetidos(struct cola *cola1, struct cola *cola2);
+void repetidos(struct cola *cola1, struct cola *cola2);
 
 #endif
