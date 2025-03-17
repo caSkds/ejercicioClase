@@ -1,23 +1,17 @@
-/*8) Dadas dos colas estáticas por el usuario de longitud 5, con elementos
-de tipo entero, verificar cuáles elementos son repetidos entre ambas
-colas.*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "StaticQueue.h"
 
-
-// Función para crear una cola
 void crearCola(struct cola *colaNueva) {
     colaNueva->head = 0;
     colaNueva->tail = -1;
     colaNueva->size = 0;
 }
 
-// Función para encolar un elemento en la cola
 int encolar(struct cola *colaEncolar, int nuevoDato) {
     if (colaEncolar->size == 5) {
-        return -1; // La cola está llena
+        return -1;
     } else {
         colaEncolar->tail = (colaEncolar->tail + 1) % 5;
         colaEncolar->elementos[colaEncolar->tail] = nuevoDato;
@@ -26,7 +20,7 @@ int encolar(struct cola *colaEncolar, int nuevoDato) {
     }
 }
 
-//  verifica elementos repetidos entre dos colas
+//  va a verifica elementos repetidos entre dos colas
 void Repetidos(struct cola *cola1, struct cola *cola2) {
     int i, j;
     int elementosCola1[5], elementosCola2[5];
