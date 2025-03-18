@@ -51,7 +51,7 @@ void crearPila(struct pila *nuevaPila) {
 int push(struct pila *pilaPush, int nuevoDato) {
     struct nodo *nuevoNodo = (struct nodo *)malloc(sizeof(struct nodo));
     if (nuevoNodo == NULL) {
-        printf("NO SE ASIGNÓ MEMORIA PARA EL NODO\n");
+        printf("NO SE ASIGNÃ“ MEMORIA PARA EL NODO\n");
         return -1;
     }
     nuevoNodo->dato = nuevoDato;
@@ -62,7 +62,7 @@ int push(struct pila *pilaPush, int nuevoDato) {
 
 int pop(struct pila *pilaPop) {
     if (pilaPop->tope == NULL) {
-        printf("PILA VACÍA\n");
+        printf("PILA VACÃA\n");
         return -1;
     }
     struct nodo *nodoAux = pilaPop->tope;
@@ -77,31 +77,5 @@ void verPila(struct pila *verPila) {
     while (verNodo != NULL) {
         printf("%d\n", verNodo->dato);
         verNodo = verNodo->siguiente;
-    }
-}
-
-void peek(struct pila *pilaPeek) {
-    if (pilaPeek->tope == NULL) {
-        printf("PILA VACÍA\n");
-    } else {
-        printf("El valor en el tope de la pila es: %d\n", pilaPeek->tope->dato);
-    }
-}
-
-void empty(struct pila *pilaChecar) {
-    if (pilaChecar->tope == NULL) {
-        printf("La pila está vacía\n");
-    } else {
-        printf("La pila NO está vacía\n");
-    }
-}
-
-void full(struct pila *pilaChecar) {
-    struct nodo *nuevoNodo = (struct nodo *)malloc(sizeof(struct nodo));
-    if (nuevoNodo == NULL) {
-        printf("La pila está llena, sin memoria disponible\n");
-    } else {
-        printf("Todavía hay memoria disponible para más nodos\n");
-        free(nuevoNodo);
     }
 }
