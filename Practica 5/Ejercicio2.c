@@ -2,10 +2,44 @@
 #include<stdlib.h>
 #include"StaticStack.h"
 
-void multiplicar(struct pila *pilaMultiplicar)
+void imprimirPila(struct pila *pilaVer)
 {
+    for(int i=0;i<10;i++)
+    {
+        printf("%i\t",pilaVer->elementos[i]);
+    }
+}
+void multiplicar(struct pila *pilaMultiplicar,int valor)
+{
+    printf("\nPila sin multiplicar:\n");
+    imprimirPila(pilaMultiplicar);
+    for(int i=0;i<10;i++)
+    {
+        pilaMultiplicar->elementos[i]=pilaMultiplicar->elementos[i]*valor;
+    }
+    printf("\nPila multiplicada:\n");
+    imprimirPila(pilaMultiplicar);
 
 }
+
+int main()
+{
+    struct pila pilaFI;
+    int elemento,val;
+    crearPila(&pilaFI);
+    printf("Ingrese los 10 elementos de la pila:\n");
+    for(int i=0;i<10;i++)
+    {
+        printf("Ingrese el elemento %i de la pila:",i+1);
+        scanf("%i",&elemento);
+        push(&pilaFI,elemento);
+    }
+    printf("Ingrese el valor por el que se van a multiplicar los valores de la pila:");
+    scanf("%i",&val);
+    multiplicar(&pilaFI,val);
+    return 0;
+}
+
 
 void crearPila(struct pila *pilaNueva){
     pilaNueva->tope=-1;
@@ -23,14 +57,6 @@ int pop(struct pila *pilaPop){
     }
 }
 
-
-int size(struct pila *pilaSize){
-    int stackSize = pilaSize->tope +1;
-    printf("Tamaño de la pila: %d\n", stackSize);
-        return stackSize;
-
-}
-
 int push(struct pila *pilaPush,int nuevoDato){
     if(pilaPush->tope==10){
         printf("Pila llena\n");
@@ -39,20 +65,4 @@ int push(struct pila *pilaPush,int nuevoDato){
         pilaPush->tope++;
         pilaPush->elementos[pilaPush->tope]=nuevoDato;
     }
-}
-
-
-int main()
-{
-    struct pila pilaFI;
-    int elemento;
-    crearPila(&pilaFI);
-    printf("Ingrese los 10 elementos de la pila:\n");
-    for(int i=0;i<10;i++)
-    {
-        printf("Ingrese el elemento %i de la pila:",i+1);
-        scanf("%i",&elemento);
-        push(&pilaFI,elemento);
-    }
-
 }
