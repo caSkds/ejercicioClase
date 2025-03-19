@@ -63,7 +63,6 @@ int full (struct cola *fullQueue){
         printf("La cola está llena\n");
         return 1;
     }
-    return 0;
 }
 int sizeC (struct cola* queueDim){
     printf("La cola tiene %d elementos\n", queueDim->size);

@@ -27,7 +27,7 @@ void main(){
             case 4:
             strcpy(command,"gcc Ejercicio4.c && ./a.out");
             system(command);
-              
+
                 break;
             case 5:
                 break;

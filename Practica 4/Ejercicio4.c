@@ -83,15 +83,14 @@ void main()
                     else {
                         
                         if (id!=nUsers){
-                            //printf("Accessed conditional\n");
+
                             for( int i =id; i<nUsers; i++){
                                 reserve = userList[i-1];
-                                printf("usr-1 id %d",userList[i-1]->usrID);
+
                                 userList[i-1] = userList[i];
-                                printf("usr id %d",userList[i]->usrID);
-                                printf("usr-1 id %d",userList[i-1]->usrID);
+
                                 userList[i] = reserve;  
-                                printf("usr id %d",userList[i]->usrID);
+
                             }
                         }
                         nUsers--;
