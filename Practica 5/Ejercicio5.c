@@ -1,30 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "DynamicStack.h"
-
-void ordenar(struct pila *ordenarPila)
-{
-    struct nodo *nodoAux1;
-    struct nodo *nodoAux2;
-    int aux;
-    for(int i=0;i<14;i++)
-    {
-        nodoAux1=ordenarPila->tope;
-        nodoAux2=nodoAux1->siguiente;
-        for(int j=0;j<14-i;j++)
-        {
-            if(nodoAux1->dato>nodoAux2->dato)
-            {
-                aux=nodoAux1->dato;
-                nodoAux1->dato=nodoAux2->dato;
-                nodoAux2->dato=aux;
-            }
-            nodoAux1=nodoAux1->siguiente;//Avanza sin depender si el if se cumple o no.
-            nodoAux2=nodoAux2->siguiente;
-        }
-    }
-}
-
 int main()
 {
     struct pila pila1;
@@ -38,9 +14,31 @@ int main()
         push(&pila1,dato);
     }
     verPila(&pila1);
-    ordenar(&pila1);
+    struct nodo *nodoAux1;
+    struct nodo *nodoAux2;
+    int aux;
+    for(int i=0;i<14;i++)
+    {
+        nodoAux1=pila1.tope;
+        nodoAux2=nodoAux1->siguiente;
+        for(int j=0;j<14-i;j++)
+        {
+            if(nodoAux1->dato>nodoAux2->dato)
+            {
+                aux=nodoAux1->dato;
+                nodoAux1->dato=nodoAux2->dato;
+                nodoAux2->dato=aux;
+            }
+            nodoAux1=nodoAux1->siguiente;
+            nodoAux2=nodoAux2->siguiente;
+        }
+    }
     printf("Pila ordenada:\n");
     verPila(&pila1);
+    while(pila1.tope!=NULL)
+    {
+    	pop(&pila1);
+	}
     return 0;
 }
 void crearPila(struct pila *nuevaPila) {

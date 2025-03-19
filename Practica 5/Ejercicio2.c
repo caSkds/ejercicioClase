@@ -2,26 +2,6 @@
 #include<stdlib.h>
 #include"StaticStack.h"
 
-void imprimirPila(struct pila *pilaVer)
-{
-    for(int i=0;i<10;i++)
-    {
-        printf("%i\t",pilaVer->elementos[i]);
-    }
-}
-void multiplicar(struct pila *pilaMultiplicar,int valor)
-{
-    printf("\nPila sin multiplicar:\n");
-    imprimirPila(pilaMultiplicar);
-    for(int i=0;i<10;i++)
-    {
-        pilaMultiplicar->elementos[i]=pilaMultiplicar->elementos[i]*valor;
-    }
-    printf("\nPila multiplicada:\n");
-    imprimirPila(pilaMultiplicar);
-
-}
-
 int main()
 {
     struct pila pilaFI;
@@ -36,7 +16,20 @@ int main()
     }
     printf("Ingrese el valor por el que se van a multiplicar los valores de la pila:");
     scanf("%i",&val);
-    multiplicar(&pilaFI,val);
+    printf("\nPila sin multiplicar:\n");
+    for(int i=0;i<10;i++)
+    {
+        printf("%i\t",pilaFI.elementos[i]);
+    }
+    for(int i=0;i<10;i++)
+    {
+        pilaFI.elementos[i]=pilaFI.elementos[i]*val;
+    }
+    printf("\nPila multiplicada:\n");
+    for(int i=0;i<10;i++)
+    {
+        printf("%i\t",pilaFI.elementos[i]);
+    }
     return 0;
 }
 
