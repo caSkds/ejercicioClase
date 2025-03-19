@@ -211,7 +211,75 @@ void verPila(struct pila *verPila) {
 
 ```
 ### Explicación de la main:
-
+```c
+struct pila pila1;
+int dato;
+```
+Se declara a `pila1` de tipo `struct pila` y también se declara la variable entera `dato`; la cual guardará los datos que vaya a ingresar el usuario por teclado a `pila1`.
+```c
+crearPila(&pila1);
+    printf("Ingrese 15 elementos para la pila dinamica:\n");
+    for(int i=0;i<15;i++)
+    {
+        printf("Ingrese el nuevo dato:\n");
+        scanf("%i",&dato);
+        push(&pila1,dato);
+    }
+    verPila(&pila1);
+```
+- Se crea la pila con ayuda de la función `crearPila`; pasándole la dirección de memoria de `pila1`.
+- Se pide al usuario 15 elementos para la pila dinámica creada.
+- Mediante un ciclo `for` se va pidiendo al usuario cada dato.
+1. Guarda el dato ingresado por el usuario en la variable `dato`.
+2. Mediante la función `push`, se va guardando en `pila1` cada dato ingresado por el usuario.
+- Al finalizar el ciclo for, se enseña la pila con los datos ingresados por el usuario.
+```c
+    struct nodo *nodoAux1;
+    struct nodo *nodoAux2;
+    int aux;
+```
+- Se crean las 2 variables de tipo `struct nodo` de tipo apuntador `nodoAux1` y `nodoAux2` respectivamente.
+- Se crea también una variable entera llamada `aux` la cual nos va a ayudar a hacer este ordenamiento.
+```c
+for(int i=0;i<14;i++)
+    {
+        nodoAux1=pila1.tope;
+        nodoAux2=nodoAux1->siguiente;
+        for(int j=0;j<14-i;j++)
+        {
+            if(nodoAux1->dato>nodoAux2->dato)
+            {
+                aux=nodoAux1->dato;
+                nodoAux1->dato=nodoAux2->dato;
+                nodoAux2->dato=aux;
+            }
+            nodoAux1=nodoAux1->siguiente;
+            nodoAux2=nodoAux2->siguiente;
+        }
+    }
+```
+### Primer for:
+- El primer for inicializa a `nodoAux1` a la dirección del `tope` de `pila1` y se recorre 14 veces, permitiendo comparar hasta el ultimo elemento de la pila dinámica `pila1`.
+- Ahora, `nodoAux2` apunta al nodo `siguiente` de `nodoAux1`; esto para que esté un lugar después y permitir comparar a `nodoAux1` con `nodoAux2`.
+***Se inicializan en cada iteración del `for` externo para que a la hora de terminar el `for` interno, se evite el sobreescribir la misma información una y otra vez, evitando así problemas con la compilación***.
+### Segundo for:
+- Este segundo for también se recorre 14 veces, pero cada vez que se incrementa el contador del `for` externo, se va restando a este `for` interno para evitar comparaciones innecesarias, permitiendo la optimización y la rapidez de la comparación.
+- Dentro de este `for`; se pregunta si el `dato` apuntado por el `nodoAux1` es mayor al `dato` apuntado por el `nodoAux2`; esto con la finalidad de que de ser cierto; entre a este `if` y haga lo siguiente:
+  1. La variable `aux` guarda el `dato` al que apunta `nodoAux1`.
+  2. Ahora, el `dato` apuntado por `nodoAux1` se vuelve el `dato` apuntado por `nodoAux2`.
+  3. Ahora, el `dato` apuntado por `nodoAux2` se convierte al `aux`; con esto; lo que hacemos es recorrer cada vez que se cumpla el `if`; se vaya recorriendo un dato mayor hasta el final de `pila1`;
+- Saliendo del `if`; ahora lo que se hace es que cada nodo avance una posición con:
+```c
+nodoAux1=nodoAux1->siguiente;
+nodoAux2=nodoAux2->siguiente;
+```
+Esto permite ordenar poco a poco los elementos de la pila en orden ascendente.
+```c
+printf("Pila ordenada:\n");
+    verPila(&pila1);
+    return 0;
+```
+Aquí simplemente imprimimos con ayuda de la funcion `verPila` la pila ya ordenada; terminando así con el programa.
 ## Ejercicio 7: Operaciones básicas de colas estáticas
 Todas las funciones en este ejercicio han sido declaradas como prototipos de funciones en el archivo `StaticQueue.h`, al igual que la estructura de cola estática, la cual, puede ser observada a continuación.
 ```c
