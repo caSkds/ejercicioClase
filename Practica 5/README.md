@@ -88,6 +88,46 @@ int size(struct pila *pilaSize){
 }
 
 ```
+## Ejercicio 2: Multipliar 10 valores de una pila estática por un valor proporcionado por el usuario
+Todas las funciones en este ejercicio han sido declaradas como prototipos de funciones en el archivo `StaticStack.h`, al igual que la estructura de pila estática.
+Las funciones usadas en este ejercicio fueron:
+```c
+void crearPila(struct pila *pilaNueva){
+    pilaNueva->tope=-1;
+    printf("Pila creada\n");
+}
+
+int pop(struct pila *pilaPop){
+    if(pilaPop->tope==-1){
+        printf("Pila vacia\n");
+        return -1;
+    }else{
+        printf("Elemento eliminado %d\n",pilaPop->elementos[pilaPop->tope]);
+        pilaPop->tope--;
+        return 0;
+    }
+}
+
+int push(struct pila *pilaPush,int nuevoDato){
+    if(pilaPush->tope==10){
+        printf("Pila llena\n");
+        return -1;
+    }else{
+        pilaPush->tope++;
+        pilaPush->elementos[pilaPush->tope]=nuevoDato;
+    }
+}
+```
+### Explicación de la main:
+```c
+struct pila pilaFI;
+    int elemento,val;
+    crearPila(&pilaFI);
+```
+-Se declara una pila de tipo struct pila llamada `pilaFI`.
+-Se declaran dos variables enteras:
+1.`elemento` Se usará para que el usuario ingrese por teclado los valores que desea que contenga `pilaFi`.
+2.`val` Se usará para guardar el valor por el cual el usuario desea multiplicar los `elementos` de `pilaFI`.
 ## Ejercicio 7: Operaciones básicas de colas estáticas
 Todas las funciones en este ejercicio han sido declaradas como prototipos de funciones en el archivo `StaticQueue.h`, al igual que la estructura de cola estática, la cual, puede ser observada a continuación.
 ```c
