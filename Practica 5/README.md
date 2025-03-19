@@ -173,6 +173,7 @@ printf("\nPila multiplicada:\n");
 
 Devuelve el elemento en la cima de la pila sin eliminarlo.
 ```
+```
 ### Código:
 ```c
 int peek(struct pila *pilaPeek) {
@@ -185,7 +186,6 @@ int peek(struct pila *pilaPeek) {
     }
 }
 ```
-
 ## Empty
 Verifica si la pila está vacía.
 
