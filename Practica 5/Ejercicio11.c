@@ -52,8 +52,6 @@ int main()
 
     printf("Intercambio:\n");
     verCola(&miCola);
-    free(miCola);
-    free(colaAux);
     return 0;
 }
 
