@@ -4,9 +4,9 @@
 
 int main() 
 {
-    struct cola miCola, colaAux1;
+    struct cola miCola, colaAux;
     crearCola(&miCola);
-    crearCola(&colaAux1);
+    crearCola(&colaAux);
 
     printf("Ingrese los elementos de la cola:\n");
     for(int i = 0; i < 16; i++) 
@@ -29,7 +29,7 @@ int main()
     {
         int dato = miCola.frente->dato;
         desencolar(&miCola);
-        encolar(&colaAux1, dato);
+        encolar(&colaAux, dato);
     }
 
     int tercero = miCola.frente->dato;
@@ -40,10 +40,10 @@ int main()
     encolar(&miCola, tercero);
     encolar(&miCola, cuarto);
 
-    while(colaAux1.frente != NULL) 
+    while(colaAux.frente != NULL) 
     {
-        int num = colaAux1.frente->dato;
-        desencolar(&colaAux1);
+        int num = colaAux.frente->dato;
+        desencolar(&colaAux);
         encolar(&miCola, num);
     }
 
@@ -52,7 +52,8 @@ int main()
 
     printf("Intercambio:\n");
     verCola(&miCola);
-
+    free(miCola);
+    free(colaAux);
     return 0;
 }
 
