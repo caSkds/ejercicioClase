@@ -35,6 +35,10 @@ int main()
     }
     printf("Pila ordenada:\n");
     verPila(&pila1);
+    while(pila1.tope!=NULL)
+    {
+    	pop(&pila1);
+	}
     return 0;
 }
 void crearPila(struct pila *nuevaPila) {
