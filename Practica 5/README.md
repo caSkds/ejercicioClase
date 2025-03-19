@@ -172,8 +172,7 @@ printf("\nPila multiplicada:\n");
 ## Top o Peek
 
 Devuelve el elemento en la cima de la pila sin eliminarlo.
-```
-```
+
 ### Código:
 ```c
 int peek(struct pila *pilaPeek) {
@@ -209,6 +208,8 @@ int full(struct pila *pilaFull) {
 Se muestra la pila multiplicada usando un ciclo `for`, en el cual se verá `pilaFI`. 
 Terminando con el programa.
 ```
+
+
 ```
 ## Ejercicio 5: Ordenar una pila dinámica
 Todas las funciones en este ejercicio han sido declaradas como prototipos de funciones en el archivo `DynamicStack.h`, al igual que la estructura de pila dinámica.
@@ -408,5 +409,158 @@ int sizeC (struct cola *);
 int sizeC (struct cola* queueDim){
     printf("La cola tiene %d elementos\n", queueDim->size);
     return queueDim->size;
+}
+```
+
+---
+
+# Ejercicio 8: Verificación de elementos repetidos en colas estáticas
+
+## Crear Cola
+Inicializa una cola con valores predeterminados.
+
+### Código:
+```c
+void crearCola(struct cola *colaNueva) {
+    colaNueva->head = 0;
+    colaNueva->tail = -1;
+    colaNueva->size = 0;
+    printf("Cola creada\n");
+}
+```
+
+## Encolar
+Añade un nuevo elemento a la cola si hay espacio disponible.
+
+### Código:
+```c
+int encolar(struct cola *colaEncolar, int nuevoDato) {
+    if (colaEncolar->size == 5) {
+        printf("Cola llena\n");
+        return -1;
+    } else {
+        colaEncolar->tail = (colaEncolar->tail + 1) % 5;
+        colaEncolar->elementos[colaEncolar->tail] = nuevoDato;
+        colaEncolar->size++;
+        printf("Elemento agregado: %d\n", nuevoDato);
+        return 0;
+    }
+}
+```
+
+## Desencolar
+Elimina un elemento de la cola.
+
+### Código:
+```c
+int desencolar(struct cola *colaDesencolar) {
+    if (colaDesencolar->size == 0) {
+        printf("Cola vacía\n");
+        return -1;
+    } else {
+        int elemento = colaDesencolar->elementos[colaDesencolar->head];
+        printf("Elemento eliminado: %d\n", elemento);
+        colaDesencolar->head = (colaDesencolar->head + 1) % 5;
+        colaDesencolar->size--;
+        return elemento;
+    }
+}
+```
+
+## Verificación de elementos repetidos
+Compara dos colas y verifica qué elementos se repiten entre ellas.
+
+### Código:
+```c
+void verificarRepetidos(struct cola *cola1, struct cola *cola2) {
+    int i, j;
+    int elementosCola1[5], elementosCola2[5];
+
+    for (i = 0; i < 5; i++) {
+        elementosCola1[i] = front(cola1);
+        desencolar(cola1);
+    }
+
+    for (i = 0; i < 5; i++) {
+        elementosCola2[i] = front(cola2);
+        desencolar(cola2);
+    }
+
+    printf("Elementos repetidos entre las dos colas:\n");
+    int encontrado = 0;
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            if (elementosCola1[i] == elementosCola2[j]) {
+                printf("%d ", elementosCola1[i]);
+                encontrado = 1;
+                break;
+            }
+        }
+    }
+    if (!encontrado) {
+        printf("No hay elementos repetidos");
+    }
+    printf("\n");
+
+    for (i = 0; i < 5; i++) {
+        encolar(cola1, elementosCola1[i]);
+    }
+    for (i = 0; i < 5; i++) {
+        encolar(cola2, elementosCola2[i]);
+    }
+}
+```
+
+# Ejercicio 10: Arreglos unidimensionales
+
+## Definición de un arreglo
+Se declara un arreglo unidimensional de enteros.
+
+### Código:
+```c
+int arreglo[10];
+```
+
+## Llenado del arreglo
+Se solicita al usuario ingresar valores para el arreglo.
+
+### Código:
+```c
+for (int i = 0; i < 10; i++) {
+    printf("Ingrese el elemento %d: ", i + 1);
+    scanf("%d", &arreglo[i]);
+}
+```
+
+## Búsqueda de un elemento en el arreglo
+Se verifica si un número ingresado por el usuario se encuentra en el arreglo.
+
+### Código:
+```c
+int buscarElemento(int arr[], int tam, int valor) {
+    for (int i = 0; i < tam; i++) {
+        if (arr[i] == valor) {
+            return i; // Retorna la posición donde se encontró
+        }
+    }
+    return -1; // Si no se encuentra
+}
+```
+
+## Ordenamiento del arreglo
+Se ordena el arreglo utilizando el algoritmo de burbuja.
+
+### Código:
+```c
+void ordenarBurbuja(int arr[], int tam) {
+    for (int i = 0; i < tam - 1; i++) {
+        for (int j = 0; j < tam - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
 }
 ```
