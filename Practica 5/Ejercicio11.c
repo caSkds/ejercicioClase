@@ -52,6 +52,10 @@ int main()
 
     printf("Intercambio:\n");
     verCola(&miCola);
+    while (miCola.frente != NULL)
+    {
+        desencolar(&miCola);
+	}
     return 0;
 }
 
