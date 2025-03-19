@@ -88,7 +88,7 @@ int size(struct pila *pilaSize){
 }
 
 ```
-## Ejercicio 2: Multipliar 10 valores de una pila estática por un valor proporcionado por el usuario
+## Ejercicio 2: Multiplicar 10 valores de una pila estática por un valor proporcionado por el usuario
 Todas las funciones en este ejercicio han sido declaradas como prototipos de funciones en el archivo `StaticStack.h`, al igual que la estructura de pila estática.
 Las funciones usadas en este ejercicio fueron:
 ```c
@@ -124,10 +124,50 @@ struct pila pilaFI;
     int elemento,val;
     crearPila(&pilaFI);
 ```
-- Se declara una pila de tipo struct pila llamada `pilaFI`.
+- Se declara una pila de tipo struct pila llamada `pilaFI` y se llama a la función `crearPila`.
 - Se declaran dos variables enteras:
-1. `elemento` Se usará para que el usuario ingrese por teclado los valores que desea que contenga `pilaFi`.
+1. `elemento` Se usará para que el usuario ingrese por teclado los valores que desea que contenga `pilaFI`.
 2. `val` Se usará para guardar el valor por el cual el usuario desea multiplicar los `elementos` de `pilaFI`.
+```c
+printf("Ingrese los 10 elementos de la pila:\n");
+    for(int i=0;i<10;i++)
+    {
+        printf("Ingrese el elemento %i de la pila:",i+1);
+        scanf("%i",&elemento);
+        push(&pilaFI,elemento);
+    }
+    printf("Ingrese el valor por el que se van a multiplicar los valores de la pila:");
+    scanf("%i",&val);
+```
+- Se pide al usuario ingresar los 10 elementos para `pilaFI`.
+- Se entra a un ciclo `for` que se repite 10 veces para que el usuario ingrese los 10 elementos de la pila.
+- Se hace uso de la función `push` para ingresar cada `elemento` ingresado por el usuario a `pilaFI`.
+- Saliendo del ciclo `for` se pide al usuario ingresar el valor por el cual se van a multiplicar los valores de `pilaFI`. Siendo guardado este valor por `val`.
+```c
+printf("\nPila sin multiplicar:\n");
+    for(int i=0;i<10;i++)
+    {
+        printf("%i\t",pilaFI.elementos[i]);
+    }
+```
+- Se imprime la pila sin modificar haciendo uso de un ciclo `for` donde se imprimirán los `elementos` de `pilaFI` ingresados por el usuario anteriormente.
+```c
+for(int i=0;i<10;i++)
+    {
+        pilaFI.elementos[i]=pilaFI.elementos[i]*val;
+    }
+```
+Ahora, mediante el uso de otro ciclo `for` se multiplica cada elemento de `pilaFI` por el valor `val` ingresado por el usuario.
+```c
+printf("\nPila multiplicada:\n");
+    for(int i=0;i<10;i++)
+    {
+        printf("%i\t",pilaFI.elementos[i]);
+    }
+    return 0;
+```
+Se muestra la pila multiplicada usando un ciclo `for`, en el cual se verá `pilaFI`. 
+Terminando con el programa.
 ## Ejercicio 7: Operaciones básicas de colas estáticas
 Todas las funciones en este ejercicio han sido declaradas como prototipos de funciones en el archivo `StaticQueue.h`, al igual que la estructura de cola estática, la cual, puede ser observada a continuación.
 ```c
