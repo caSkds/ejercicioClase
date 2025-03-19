@@ -124,10 +124,10 @@ struct pila pilaFI;
     int elemento,val;
     crearPila(&pilaFI);
 ```
--Se declara una pila de tipo struct pila llamada `pilaFI`.
--Se declaran dos variables enteras:
-1.`elemento` Se usará para que el usuario ingrese por teclado los valores que desea que contenga `pilaFi`.
-2.`val` Se usará para guardar el valor por el cual el usuario desea multiplicar los `elementos` de `pilaFI`.
+- Se declara una pila de tipo struct pila llamada `pilaFI`.
+- Se declaran dos variables enteras:
+1. `elemento` Se usará para que el usuario ingrese por teclado los valores que desea que contenga `pilaFi`.
+2. `val` Se usará para guardar el valor por el cual el usuario desea multiplicar los `elementos` de `pilaFI`.
 ## Ejercicio 7: Operaciones básicas de colas estáticas
 Todas las funciones en este ejercicio han sido declaradas como prototipos de funciones en el archivo `StaticQueue.h`, al igual que la estructura de cola estática, la cual, puede ser observada a continuación.
 ```c
