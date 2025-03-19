@@ -165,9 +165,51 @@ printf("\nPila multiplicada:\n");
         printf("%i\t",pilaFI.elementos[i]);
     }
     return 0;
+
 ```
+## Ejercicio 4: Operaciones básicas en Pila Dinámica
+
+## Top o Peek
+
+Devuelve el elemento en la cima de la pila sin eliminarlo.
+```
+### Código:
+```c
+int peek(struct pila *pilaPeek) {
+    if (pilaPeek->tope == NULL) {
+        printf("Pila vacía\n");
+        return -1;
+    } else {
+        printf("El tope es: %d\n", pilaPeek->tope->dato);
+        return pilaPeek->tope->dato;
+    }
+}
+```
+
+## Empty
+Verifica si la pila está vacía.
+
+### Código:
+```c
+int empty(struct pila *pilaEmpty) {
+    return (pilaEmpty->tope == NULL) ? 1 : 0;
+}
+```
+
+## Full
+Verifica si la pila está llena (en pilas dinámicas no hay un límite fijo, por lo que esta función puede no ser aplicable en todos los casos).
+
+### Código:
+```c
+int full(struct pila *pilaFull) {
+    return 0; // En una pila dinámica, usualmente no hay límite fijo.
+}
+```
+
 Se muestra la pila multiplicada usando un ciclo `for`, en el cual se verá `pilaFI`. 
 Terminando con el programa.
+```
+```
 ## Ejercicio 5: Ordenar una pila dinámica
 Todas las funciones en este ejercicio han sido declaradas como prototipos de funciones en el archivo `DynamicStack.h`, al igual que la estructura de pila dinámica.
 Las funciones usadas en este ejercicio fueron:
