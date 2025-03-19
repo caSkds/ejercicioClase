@@ -276,10 +276,14 @@ nodoAux2=nodoAux2->siguiente;
 Esto permite ordenar poco a poco los elementos de la pila en orden ascendente.
 ```c
 printf("Pila ordenada:\n");
-    verPila(&pila1);
-    return 0;
+verPila(&pila1);
+while(pila1.tope!=NULL)
+{
+    pop(&pila1);
+}
+return 0;
 ```
-Aquí simplemente imprimimos con ayuda de la funcion `verPila` la pila ya ordenada; terminando así con el programa.
+Aquí simplemente imprimimos con ayuda de la funcion `verPila` la pila ya ordenada; se libera toda la memoria de la pila principal con el ciclo `while`, se va libernado cada nodo de `pila1` con la funcion `pop`; y así termina el programa.
 ## Ejercicio 7: Operaciones básicas de colas estáticas
 Todas las funciones en este ejercicio han sido declaradas como prototipos de funciones en el archivo `StaticQueue.h`, al igual que la estructura de cola estática, la cual, puede ser observada a continuación.
 ```c
