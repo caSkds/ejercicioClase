@@ -168,6 +168,50 @@ printf("\nPila multiplicada:\n");
 ```
 Se muestra la pila multiplicada usando un ciclo `for`, en el cual se verá `pilaFI`. 
 Terminando con el programa.
+## Ejercicio 5: Ordenar una pila dinámica
+Todas las funciones en este ejercicio han sido declaradas como prototipos de funciones en el archivo `DynamicStack.h`, al igual que la estructura de pila dinámica.
+Las funciones usadas en este ejercicio fueron:
+```c
+void crearPila(struct pila *nuevaPila) {
+    nuevaPila->tope = NULL;
+    printf("PILA CREADA\n");
+}
+
+int push(struct pila *pilaPush, int nuevoDato) {
+    struct nodo *nuevoNodo = (struct nodo *)malloc(sizeof(struct nodo));
+    if (nuevoNodo == NULL) {
+        printf("NO SE ASIGNÓ MEMORIA PARA EL NODO\n");
+        return -1;
+    }
+    nuevoNodo->dato = nuevoDato;
+    nuevoNodo->siguiente = pilaPush->tope;
+    pilaPush->tope = nuevoNodo;
+    return 0;
+}
+
+int pop(struct pila *pilaPop) {
+    if (pilaPop->tope == NULL) {
+        printf("PILA VACÍA\n");
+        return -1;
+    }
+    struct nodo *nodoAux = pilaPop->tope;
+    pilaPop->tope = nodoAux->siguiente;
+    free(nodoAux);
+    return 0;
+}
+
+void verPila(struct pila *verPila) {
+    printf("Datos de la pila:\n");
+    struct nodo *verNodo = verPila->tope;
+    while (verNodo != NULL) {
+        printf("%d\n", verNodo->dato);
+        verNodo = verNodo->siguiente;
+    }
+}
+
+```
+### Explicación de la main:
+
 ## Ejercicio 7: Operaciones básicas de colas estáticas
 Todas las funciones en este ejercicio han sido declaradas como prototipos de funciones en el archivo `StaticQueue.h`, al igual que la estructura de cola estática, la cual, puede ser observada a continuación.
 ```c
