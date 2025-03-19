@@ -73,29 +73,3 @@ void verPila(struct pila *verPila) {
         verNodo = verNodo->siguiente;
     }
 }
-
-void peek(struct pila *pilaPeek) {
-    if (pilaPeek->tope == NULL) {
-        printf("PILA VACÍA\n");
-    } else {
-        printf("El valor en el tope de la pila es: %d\n", pilaPeek->tope->dato);
-    }
-}
-
-void empty(struct pila *pilaChecar) {
-    if (pilaChecar->tope == NULL) {
-        printf("La pila está vacía\n");
-    } else {
-        printf("La pila NO está vacía\n");
-    }
-}
-
-void full(struct pila *pilaChecar) {
-    struct nodo *nuevoNodo = (struct nodo *)malloc(sizeof(struct nodo));
-    if (nuevoNodo == NULL) {
-        printf("La pila está llena, sin memoria disponible\n");
-    } else {
-        printf("Todavía hay memoria disponible para más nodos\n");
-        free(nuevoNodo);
-    }
-}
