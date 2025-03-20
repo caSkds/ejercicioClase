@@ -171,7 +171,7 @@ printf("\nPila multiplicada:\n");
 
 ## Top o Peek
 
-Devuelve el elemento en la cima de la pila sin eliminarlo.
+Devuelve el elemento en la cima de la pila sin eliminarlo
 
 ### Código:
 ```c
@@ -196,7 +196,7 @@ int empty(struct pila *pilaEmpty) {
 ```
 
 ## Full
-Verifica si la pila está llena (en pilas dinámicas no hay un límite fijo, por lo que esta función puede no ser aplicable en todos los casos).
+Verifica si la pila está llena (en pilas dinámicas no hay un límite fijo, por lo que esta función puede no ser aplicable en todos los casos)
 
 ### Código:
 ```c
@@ -414,12 +414,35 @@ int sizeC (struct cola* queueDim){
 
 ---
 
-# Ejercicio 8: Verificación de elementos repetidos en colas estáticas
+## Ejercicio 8: Verificación de elementos repetidos en colas estáticas
 
-## Crear Cola
-Inicializa una cola con valores predeterminados.
+## Descripción
+En este ejercicio trabajamos con **colas estáticas**, que son estructuras de datos que siguen la política **FIFO (First In, First Out)**, lo que significa que el primer elemento en entrar es el primero en salir.
 
-### Código:
+**Objetivo:**  
+- Crear dos colas estáticas.  
+- Insertar elementos en ellas.  
+- Comparar los elementos de ambas colas para detectar valores repetidos.  
+
+---
+
+## Estructura `cola`
+Definimos una estructura que representa una cola estática con tamaño máximo de 5 elementos.
+
+```c
+struct cola {
+    int elementos[5];
+    int head;
+    int tail;
+    int size;
+};
+```
+
+---
+
+### Función `crearCola`
+Inicializa una cola vacía.
+
 ```c
 void crearCola(struct cola *colaNueva) {
     colaNueva->head = 0;
@@ -429,61 +452,59 @@ void crearCola(struct cola *colaNueva) {
 }
 ```
 
-## Encolar
-Añade un nuevo elemento a la cola si hay espacio disponible.
+---
 
-### Código:
+### Función `encolar`
+Inserta un elemento en la cola si hay espacio disponible.
+
 ```c
 int encolar(struct cola *colaEncolar, int nuevoDato) {
     if (colaEncolar->size == 5) {
         printf("Cola llena\n");
         return -1;
-    } else {
-        colaEncolar->tail = (colaEncolar->tail + 1) % 5;
-        colaEncolar->elementos[colaEncolar->tail] = nuevoDato;
-        colaEncolar->size++;
-        printf("Elemento agregado: %d\n", nuevoDato);
-        return 0;
     }
+    colaEncolar->tail = (colaEncolar->tail + 1) % 5;
+    colaEncolar->elementos[colaEncolar->tail] = nuevoDato;
+    colaEncolar->size++;
+    printf("Elemento agregado: %d\n", nuevoDato);
+    return 0;
 }
 ```
 
-## Desencolar
-Elimina un elemento de la cola.
+---
 
-### Código:
+### Función `desencolar`
+Elimina y devuelve el primer elemento de la cola.
+
 ```c
 int desencolar(struct cola *colaDesencolar) {
     if (colaDesencolar->size == 0) {
         printf("Cola vacía\n");
         return -1;
-    } else {
-        int elemento = colaDesencolar->elementos[colaDesencolar->head];
-        printf("Elemento eliminado: %d\n", elemento);
-        colaDesencolar->head = (colaDesencolar->head + 1) % 5;
-        colaDesencolar->size--;
-        return elemento;
     }
+    int elemento = colaDesencolar->elementos[colaDesencolar->head];
+    printf("Elemento eliminado: %d\n", elemento);
+    colaDesencolar->head = (colaDesencolar->head + 1) % 5;
+    colaDesencolar->size--;
+    return elemento;
 }
 ```
 
-## Verificación de elementos repetidos
-Compara dos colas y verifica qué elementos se repiten entre ellas.
+---
 
-### Código:
+### Función verificarRepetidos
+Compara los elementos de dos colas y muestra los valores repetidos.
+
 ```c
 void verificarRepetidos(struct cola *cola1, struct cola *cola2) {
     int i, j;
     int elementosCola1[5], elementosCola2[5];
 
     for (i = 0; i < 5; i++) {
-        elementosCola1[i] = front(cola1);
-        desencolar(cola1);
+        elementosCola1[i] = desencolar(cola1);
     }
-
     for (i = 0; i < 5; i++) {
-        elementosCola2[i] = front(cola2);
-        desencolar(cola2);
+        elementosCola2[i] = desencolar(cola2);
     }
 
     printf("Elementos repetidos entre las dos colas:\n");
@@ -510,6 +531,38 @@ void verificarRepetidos(struct cola *cola1, struct cola *cola2) {
     }
 }
 ```
+
+---
+
+## Función `main`
+Ejecuta el programa, solicitando la entrada de datos y verificando los elementos repetidos.
+
+```c
+int main() {
+    struct cola cola1, cola2;
+    int elemento;
+
+    crearCola(&cola1);
+    crearCola(&cola2);
+
+    printf("Ingrese 5 elementos para la primera cola:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Elemento %d: ", i + 1);
+        scanf("%d", &elemento);
+        encolar(&cola1, elemento);
+    }
+
+    printf("Ingrese 5 elementos para la segunda cola:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Elemento %d: ", i + 1);
+        scanf("%d", &elemento);
+        encolar(&cola2, elemento);
+    }
+
+    verificarRepetidos(&cola1, &cola2);
+
+    return 0;
+}
 
 # Ejercicio 10: Arreglos unidimensionales
 
