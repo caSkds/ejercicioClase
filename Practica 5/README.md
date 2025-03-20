@@ -563,7 +563,7 @@ int main() {
 
     return 0;
 }
-
+```
 # Ejercicio 10: Arreglos unidimensionales
 
 ## Definición de un arreglo
@@ -616,4 +616,76 @@ void ordenarBurbuja(int arr[], int tam) {
         }
     }
 }
+```
+
+## Ejercicio 12: Crear cola con 12 elementos, encontrar el máximo e invertir 6 de ellos
+### Creando la cola
+Para esto usamos la función `crearCola` y un apuntador de estructura cola.
+```c
+    struct cola *Queue = calloc(1,sizeof(struct cola));
+    crearCola(Queue);
+```
+
+### Ingresando los elementos de la cola:
+
+Para esto usamos un for que pidiera al usuario cada uno de los elementos y se asignarían a cada nodo con la función `encolar`.
+
+```c
+for(int i = 0; i<12;i++){
+        printf("Ingrese un número \n");
+        scanf("%d",&currElement);
+        encolar(Queue, currElement);
+    }
+```
+
+### Obteniendo los elementos de la cola
+Dado que las funciones declaradas en `DynamicQueue.h`son mayormente de tipo `void`, no podemos usarlas para que nos devuelvan los elementos de la cola para compararlos en nuestro programa. Tomando inspiración de `front`, creé un while que iteraría por cada nodo de la cola, hasta que la variable `siguiente`apuntara a `NULL`. En cada iteración una variable `iterator`icncrementará su valor, para ser el índice de un arreglo donde se tendrán todos los elementos de la cola.
+
+```c
+struct nodo *verNodo = Queue->frente;
+    while (verNodo != NULL) {
+        queueElements[iterator] = verNodo->dato;
+        iterator++;
+        verNodo = verNodo->siguiente;
+    }
+
+```
+
+### Obteniendo el máximo
+Para esto se creó una variable `max`igualada al primer elemento de `queueElements`. se iterará por todo el arreglo, comparando si el valor iterado es mayor al actual. De ser así se actualiza el valor de `max`.
+
+```c
+    int max =0;
+    for(int i =0; i<12; i++){
+        if(queueElements[i]>max){
+            max = queueElements[i];
+        }
+        
+    }
+    printf("El elemento más grande de la cola es: %d\n", max);
+```
+
+### Obteniendo los primeros 6 elementos e invertirlos
+Para esto se usaron 2 ciclos for. Uno que empezara en 0 y terminara en 5 para imprimir dichos elementos de `queueElements`y otro que comenzara en 5 y terminara en 0 para imprimir los elementos invertidos.
+
+```c
+    for(int i=0;i<6; i++){
+        printf("%d ", queueElements[i]);
+        
+    }
+    printf("\n");
+    printf("Dichos elementos invertidos son:\n");
+    for(int i=5;i>-1; i--){
+        printf("%d ", queueElements[i]);
+        
+    }
+
+```
+
+### Liberando memoria
+Finalmente liberamos la memoria de los apuntes declarados.
+
+```c 
+    free(Queue);
+    free(verNodo);
 ```
