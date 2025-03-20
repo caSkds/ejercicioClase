@@ -17,7 +17,7 @@ void crearPila(struct pila *);
 int push(struct pila *, int);
 int pop(struct pila *);
 void verPila(struct pila *);
-void peek(struct pila *);
+int peek(struct pila *);
 void empty(struct pila *);
 void full(struct pila *);
 
