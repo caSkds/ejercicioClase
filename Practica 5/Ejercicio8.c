@@ -6,6 +6,7 @@
 int main() {
     struct cola cola1, cola2;
     int dato, i, j;
+    int copiaCola1[5], copiaCola2[5];
 
     crearCola(&cola1);
     crearCola(&cola2);
@@ -15,6 +16,7 @@ int main() {
         printf("Elemento %d: ", i + 1);
         scanf("%d", &dato);
         encolar(&cola1, dato);
+        copiaCola1[i] = dato;
     }
 
     printf("Ingrese los elementos de la segunda cola:\n");
@@ -22,22 +24,15 @@ int main() {
         printf("Elemento %d: ", i + 1);
         scanf("%d", &dato);
         encolar(&cola2, dato);
+        copiaCola2[i] = dato;
     }
 
     printf("Elementos repetidos entre las dos colas:\n");
     int encontrado = 0;
     for (i = 0; i < 5; i++) {
-        int elemento1 = front(&cola1);
-        desencolar(&cola1);
-        encolar(&cola1, elemento1);
-        
         for (j = 0; j < 5; j++) {
-            int elemento2 = front(&cola2);
-            desencolar(&cola2);
-            encolar(&cola2, elemento2);
-            
-            if (elemento1 == elemento2) {
-                printf("%d ", elemento1);
+            if (copiaCola1[i] == copiaCola2[j]) {
+                printf("%d ", copiaCola1[i]);
                 encontrado = 1;
                 break;
             }
@@ -77,7 +72,7 @@ int desencolar(struct cola *colaDesencolar) {
         printf("Cola vacia\n");
         return -1;
     } else {
-        printf("Elemento eliminado%d\n", colaDesencolar->elementos[colaDesencolar->head]);
+        printf("Elemento eliminado %d\n", colaDesencolar->elementos[colaDesencolar->head]);
         colaDesencolar->head++;
         colaDesencolar->size--;
         return 0;
