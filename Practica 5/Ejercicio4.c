@@ -49,7 +49,7 @@ void peek(struct pila *pilaPeek) {
 
 void empty(struct pila *pilaChecar) {
     if (pilaChecar->tope == NULL) {
-        printf("La pila está vacia\n");
+        printf("La pila esta vacia\n");
     } else {
         printf("La pila NO esta vacia\n");
     }
