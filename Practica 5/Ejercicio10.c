@@ -11,7 +11,7 @@ void crearCola(struct cola *nuevaCola) {
 int encolar(struct cola *colaEnqueue, int nuevoDato) {
     struct nodo *nuevoNodo = (struct nodo *)malloc(sizeof(struct nodo));
     if (nuevoNodo == NULL) {
-        printf("NO SE ASIGNÓ MEMORIA PARA EL NODO\n");
+        printf("NO SE ASIGNO MEMORIA PARA EL NODO\n");
         return -1;
     }
     nuevoNodo->dato = nuevoDato;
@@ -52,7 +52,7 @@ void verCola(struct cola *verCola) {
 
 int front(struct Cola *colaFront) {
     if (empty(colaFront)) {
-        printf("Cola vacía, no hay elemento en el frente\n");
+        printf("Cola vacia, no hay elemento en el frente\n");
         return -1;
     }
     return colaFront->head->dato;
@@ -60,9 +60,9 @@ int front(struct Cola *colaFront) {
 
 void empty(struct cola *colaChecar) {
     if (colaChecar->frente == NULL) {
-        printf("La cola está vacía\n");
+        printf("La cola esta vacia\n");
     } else {
-        printf("La cola NO está vacía\n");
+        printf("La cola NO esta vacia\n");
     }
 }
 
