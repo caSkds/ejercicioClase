@@ -3,55 +3,92 @@
 #include <stdlib.h>
 #include "StaticQueue.h"
 
-void crearCola(struct cola *colaNueva) {
-    colaNueva->head = 0;
-    colaNueva->tail = -1;
-    colaNueva->size = 0;
-}
+int main() {
+    struct cola cola1, cola2;
+    int dato, i, j;
 
-int encolar(struct cola *colaEncolar, int nuevoDato) {
-    if (colaEncolar->size == 5) {
-        return -1;
-    } else {
-        colaEncolar->tail = (colaEncolar->tail + 1) % 5;
-        colaEncolar->elementos[colaEncolar->tail] = nuevoDato;
-        colaEncolar->size++;
-        return 0; 
-    }
-}
+    crearCola(&cola1);
+    crearCola(&cola2);
 
-//  va a verifica elementos repetidos entre dos colas
-void repetidos(struct cola *cola1, struct cola *cola2) {
-    int i, j;
-    int elementosCola1[5], elementosCola2[5];
-
-    // Copio los elementos de las colas 
+    printf("Ingrese los elementos de la primera cola:\n");
     for (i = 0; i < 5; i++) {
-        elementosCola1[i] = cola1->elementos[(cola1->head + i) % 5];
-        elementosCola2[i] = cola2->elementos[(cola2->head + i) % 5];
+        printf("Elemento %d: ", i + 1);
+        scanf("%d", &dato);
+        encolar(&cola1, dato);
+    }
+
+    printf("Ingrese los elementos de la segunda cola:\n");
+    for (i = 0; i < 5; i++) {
+        printf("Elemento %d: ", i + 1);
+        scanf("%d", &dato);
+        encolar(&cola2, dato);
     }
 
     printf("Elementos repetidos entre las dos colas:\n");
     int encontrado = 0;
     for (i = 0; i < 5; i++) {
+        int elemento1 = front(&cola1);
+        desencolar(&cola1);
+        encolar(&cola1, elemento1);
+        
         for (j = 0; j < 5; j++) {
-            if (elementosCola1[i] == elementosCola2[j]) {
-                printf("%d ", elementosCola1[i]);
+            int elemento2 = front(&cola2);
+            desencolar(&cola2);
+            encolar(&cola2, elemento2);
+            
+            if (elemento1 == elemento2) {
+                printf("%d ", elemento1);
                 encontrado = 1;
-                break; 
+                break;
             }
         }
     }
-    if (encontrado==0) {
-        printf("No hay elementos repetidos ");
+    
+    if (!encontrado) {
+        printf("No hay elementos repetidos");
     }
     printf("\n");
-}
-        scanf("%d", &dato);
-        encolar(&cola2, dato);
-    }
-
-    repetidos(&cola1, &cola2);
 
     return 0;
+}
+
+void crearCola(struct cola *colaNueva) {
+    colaNueva->head = 0;
+    colaNueva->tail = -1;
+    colaNueva->size = 0;
+    printf("Cola creada\n");
+}
+
+int encolar(struct cola *colaEncolar, int nuevoDato) {
+    if (colaEncolar->size == 10) {
+        printf("Cola llena\n");
+        return -1;
+    } else {
+        colaEncolar->tail++;
+        colaEncolar->size++;
+        colaEncolar->elementos[colaEncolar->tail] = nuevoDato;
+        printf("Elemento agregado \n");
+        return 0;
+    }
+}
+
+int desencolar(struct cola *colaDesencolar) {
+    if (colaDesencolar->size == 0) {
+        printf("Cola vacia\n");
+        return -1;
+    } else {
+        printf("Elemento eliminado%d\n", colaDesencolar->elementos[colaDesencolar->head]);
+        colaDesencolar->head++;
+        colaDesencolar->size--;
+        return 0;
+    }
+}
+
+int front(struct cola *frontQueue) {
+    if (frontQueue->size == 0) {
+        printf("Cola vacía");
+        return -1;
+    } else {
+        return frontQueue->elementos[frontQueue->head];
+    }
 }
