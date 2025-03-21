@@ -66,12 +66,3 @@ void empty(struct cola *colaChecar) {
     }
 }
 
-void full(struct cola *colaChecar) {
-    struct nodo *nuevoNodo = (struct nodo *)malloc(sizeof(struct nodo));
-    if (nuevoNodo == NULL) {
-        printf("La cola está llena, sin memoria disponible\n");
-    } else {
-        printf("Todavía hay memoria disponible para más nodos\n");
-        free(nuevoNodo);
-    }
-}
