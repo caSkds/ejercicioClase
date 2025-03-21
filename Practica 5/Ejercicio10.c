@@ -50,12 +50,12 @@ void verCola(struct cola *verCola) {
     }
 }
 
-void front(struct cola *colaFront) {
-    if (colaFront->frente == NULL) {
-        printf("COLA VACÍA\n");
-    } else {
-        printf("El valor en el frente de la cola es: %d\n", colaFront->frente->dato);
+int front(struct Cola *colaFront) {
+    if (empty(colaFront)) {
+        printf("Cola vacía, no hay elemento en el frente\n");
+        return -1;
     }
+    return colaFront->head->dato;
 }
 
 void empty(struct cola *colaChecar) {
