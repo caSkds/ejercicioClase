@@ -50,7 +50,7 @@ void verCola(struct cola *verCola) {
     }
 }
 
-int front(struct Cola *colaFront) {
+int front(struct cola *colaFront) {
     if (empty(colaFront)) {
         printf("Cola vacia, no hay elemento en el frente\n");
         return -1;
