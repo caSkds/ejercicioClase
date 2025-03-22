@@ -55,14 +55,16 @@ int front(struct Cola *colaFront) {
         printf("Cola vacia, no hay elemento en el frente\n");
         return -1;
     }
-    return colaFront->head->dato;
+    return colaFront->frente->dato;
 }
 
-void empty(struct cola *colaChecar) {
+int empty(struct cola *colaChecar) {
     if (colaChecar->frente == NULL) {
         printf("La cola esta vacia\n");
+        return 1;
     } else {
         printf("La cola NO esta vacia\n");
+        return 0;
     }
 }
 
