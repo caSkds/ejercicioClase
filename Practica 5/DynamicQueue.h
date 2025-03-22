@@ -18,8 +18,8 @@ void crearCola(struct cola *);
 int encolar(struct cola *, int);
 int desencolar(struct cola *);
 void verCola(struct cola *);
-void front(struct cola *);
-void empty(struct cola *);
-void full(struct cola *);
+int front(struct cola *);
+int empty(struct cola *);
+int full(struct cola *);
 
 #endif
