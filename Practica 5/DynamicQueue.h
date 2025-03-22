@@ -20,6 +20,6 @@ int desencolar(struct cola *);
 void verCola(struct cola *);
 int front(struct cola *);
 int empty(struct cola *);
-int full(struct cola *);
+//int full(struct cola *);
 
 #endif
