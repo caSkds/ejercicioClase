@@ -115,4 +115,19 @@ void verLista(struct lista *verLista){
     
 }
 
-
+int size(struct lista *tamLista)
+{
+    int tam=0;
+    if(tamLista->head==NULL)
+    {
+        printf("Lista vacia\n");
+        return -1;
+    }
+    struct nodo *nodoTam=tamLista->head;
+    do
+    {
+        tam++;
+        nodoTam=nodoTam->siguiente;
+    }while(nodoTam !=tamLista->head);
+    return tam;
+}
