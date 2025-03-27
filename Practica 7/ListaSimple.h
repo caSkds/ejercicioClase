@@ -21,7 +21,7 @@ void verLista(struct lista *);
 int insertarIndice(struct lista *nuevaLista, int nuevoDato, int posicion);
 int size(struct lista *);
 void borrarIndice(struct lista *, int);
-
+int insertarFinal(struct lista *, int);
 
 
 #endif
