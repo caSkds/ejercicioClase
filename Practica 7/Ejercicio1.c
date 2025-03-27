@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "ListaSimple.h"
+
+#include<stdio.h>
+#include<stdlib.h>
+
+
+void crearLista(struct lista *nuevaLista){
+    nuevaLista->head=NULL;
+    printf("Lista creada\n");
+}
+
+int insertar(struct lista *insertarLista,int nuevoDato){
+    struct nodo *nuevoNodo=(struct nodo *)malloc(sizeof(struct nodo));
+    if(nuevoNodo==NULL){
+        printf("No se asigno memoria\n");
+        return -1;
+    }
+    nuevoNodo->dato=nuevoDato;
+    nuevoNodo->siguiente=insertarLista->head;
+    insertarLista->head=nuevoNodo;
+    return 0;
+}
+
+int buscar(struct lista *buscarLista,int datoBuscar){
+    if(buscarLista->head==NULL){
+        printf("Lista vacia\n");
+        return -1;
+    }
+    struct nodo *nodoAux = buscarLista->head;
+    while(nodoAux!=NULL){
+        if(nodoAux->dato==datoBuscar){
+            printf("Dato encontrado\n");
+            return nodoAux->dato;
+        }
+        nodoAux=nodoAux->siguiente;
+    }
+    printf("Dato no encontrado\n");
+    return -1;
+}
+
+int borrar(struct lista *borrarLista,int datoBorrar){
+    //verificamos que no este vacia
+    if(borrarLista->head==NULL){
+        printf("Lista vacia\n");
+        return -1;
+    }
+    
+    //creamos dos nodos
+    struct nodo *nodoEliminar=borrarLista->head;
+    struct nodo *nodoPrevio=NULL;
+    
+    //buscar los elementos
+    while(nodoEliminar != NULL && nodoEliminar->dato != datoBorrar){
+        nodoPrevio=nodoEliminar;
+        nodoEliminar=nodoEliminar->siguiente;
+    }
+    
+    if(nodoEliminar==NULL){
+        //si no esta el elemento buscado 
+        printf("No esta el elemento\n");
+        return -1;
+    }
+    //Si es el primer elemento lista que ingreso
+    if(nodoEliminar == borrarLista->head){
+        borrarLista->head=nodoEliminar->siguiente;
+    }else{
+        nodoPrevio->siguiente=nodoEliminar->siguiente;
+    }
+    free(nodoEliminar);
+    return 0;
+}
+
+void verLista(struct lista *verLista){
+    if(verLista->head==NULL){
+        printf("Lista Vacia\n");
+    }else{
+        struct nodo *verNodo=verLista->head;
+        printf("Datos de la lista\n");
+        while(verNodo != NULL){
+            printf("%d\n",verNodo->dato);
+            verNodo=verNodo->siguiente;
+        }
+    }
+    printf("\n");
+    
+}
