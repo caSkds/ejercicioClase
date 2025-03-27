@@ -105,3 +105,33 @@ int size(struct lista *tamLista)
     return tam;
 }
 
+int insertar(struct lista *nuevaLista, int nuevoDato, int posicion){
+    if(posicion>size(nuevaLista)){
+        printf("Posicion fuera de rango\n");
+        return -1;
+    }
+    struct nodo *nuevoNodo=(struct nodo *)malloc(sizeof(struct nodo));
+    if(nuevoNodo==NULL){
+        printf("No se pudo asignar memoria al nodo\n");
+        return -1;
+    }
+    //si si se asigno memoria
+    nuevoNodo->dato=nuevoDato;
+    nuevoNodo->siguiente=NULL;
+    if(posicion==0){
+        nuevoNodo->siguiente=nuevaLista->head;
+        nuevaLista->head=nuevoNodo;
+    }else{
+        struct nodo *nodoAuxiliar=nuevaLista->head;
+        for(int i=0;i<posicion-1;i++){
+            nodoAuxiliar=nodoAuxiliar->siguiente;
+            if(nodoAuxiliar==NULL){
+                printf("Posicion fuera de rango\n");
+                return -1;
+            }
+        }
+        nuevoNodo->siguiente=nodoAuxiliar->siguiente;
+        nodoAuxiliar->siguiente=nuevoNodo;
+    }
+    return 0;
+}
