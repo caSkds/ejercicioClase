@@ -135,3 +135,31 @@ int insertar(struct lista *nuevaLista, int nuevoDato, int posicion){
     }
     return 0;
 }
+
+void borrarIndice(struct lista* indiceLista, int indice)
+{
+    if(indiceLista->head==NULL)
+    {
+        printf("Lista vacia\n");
+    }
+    struct nodo *nodoEliminar=indiceLista->head;
+    struct nodo *nodoPrevio=NULL;
+    for(int i=0;i<=indice;i++)
+    {
+        if(i==indice)
+        {
+            if(nodoEliminar==indiceLista->head)
+            {
+                indiceLista->head=nodoEliminar->siguiente;
+            }
+            else
+            {
+                nodoPrevio->siguiente=nodoEliminar->siguiente;
+            }
+            free(nodoEliminar);
+        }
+        nodoPrevio=nodoEliminar;
+        nodoEliminar=nodoEliminar->siguiente;
+    }
+
+}
