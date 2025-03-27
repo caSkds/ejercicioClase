@@ -105,7 +105,7 @@ int size(struct lista *tamLista)
     return tam;
 }
 
-int insertar(struct lista *nuevaLista, int nuevoDato, int posicion){
+int insertarIndice(struct lista *nuevaLista, int nuevoDato, int posicion){
     if(posicion>size(nuevaLista)){
         printf("Posicion fuera de rango\n");
         return -1;
@@ -134,51 +134,4 @@ int insertar(struct lista *nuevaLista, int nuevoDato, int posicion){
         nodoAuxiliar->siguiente=nuevoNodo;
     }
     return 0;
-}
-
-void borrarIndice(struct lista* indiceLista, int indice)
-{
-    if(indiceLista->head==NULL)
-    {
-        printf("Lista vacia\n");
-    }
-    struct nodo *nodoEliminar=indiceLista->head;
-    struct nodo *nodoPrevio=NULL;
-    for(int i=0;i<=indice;i++)
-    {
-        if(i==indice)
-        {
-            if(nodoEliminar==indiceLista->head)
-            {
-                indiceLista->head=nodoEliminar->siguiente;
-            }
-            else
-            {
-                nodoPrevio->siguiente=nodoEliminar->siguiente;
-            }
-            free(nodoEliminar);
-        }
-        nodoPrevio=nodoEliminar;
-        nodoEliminar=nodoEliminar->siguiente;
-    }
-
-}
-
-int insertarFinal(struct lista *insertarLista, int nuevoDato) {
-    struct nodo *nuevoNodo = (struct nodo *)malloc(sizeof(struct nodo));
-    nuevoNodo->dato = nuevoDato;
-    nuevoNodo->siguiente = NULL;
-
-    if (insertarLista->head == NULL) {  
-        // En caso de que no haya datpos en la lista
-        insertarLista->head = nuevoNodo;
-    } else {
-        struct nodo *nodoAux = insertarLista->head;
-        while (nodoAux->siguiente != NULL) {  
-            // recorremos hasta encontrar el último nodo
-            nodoAux = nodoAux->siguiente;
-        }
-        nodoAux->siguiente = nuevoNodo;  
-    }
-    return 0;
 }

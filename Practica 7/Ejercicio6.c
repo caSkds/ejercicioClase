@@ -1,4 +1,4 @@
-#include "ListaSimple.h"
+#include "ListaCircular.h"
 #include <stdio.h>
 #include <stdlib.h>
 void crearLista(struct lista *nuevaLista){
@@ -130,32 +130,4 @@ int size(struct lista *tamLista)
         nodoTam=nodoTam->siguiente;
     }while(nodoTam !=tamLista->head);
     return tam;
-}
-
-void borrarIndice(struct lista* indiceLista, int indice)
-{
-    if(indiceLista->head==NULL)
-    {
-        printf("Lista vacia\n");
-    }
-    struct nodo *nodoEliminar=indiceLista->head;
-    struct nodo *nodoPrevio=NULL;
-    for(int i=0;i<=indice;i++)
-    {
-        if(i==indice)
-        {
-            if(nodoEliminar==indiceLista->head)
-            {
-                indiceLista->head=nodoEliminar->siguiente;
-            }
-            else
-            {
-                nodoPrevio->siguiente=nodoEliminar->siguiente;
-            }
-            free(nodoEliminar);
-        }
-        nodoPrevio=nodoEliminar;
-        nodoEliminar=nodoEliminar->siguiente;
-    }
-
 }
