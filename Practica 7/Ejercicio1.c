@@ -163,3 +163,22 @@ void borrarIndice(struct lista* indiceLista, int indice)
     }
 
 }
+
+int insertarFinal(struct lista *insertarLista, int nuevoDato) {
+    struct nodo *nuevoNodo = (struct nodo *)malloc(sizeof(struct nodo));
+    nuevoNodo->dato = nuevoDato;
+    nuevoNodo->siguiente = NULL;
+
+    if (insertarLista->head == NULL) {  
+        // En caso de que no haya datpos en la lista
+        insertarLista->head = nuevoNodo;
+    } else {
+        struct nodo *nodoAux = insertarLista->head;
+        while (nodoAux->siguiente != NULL) {  
+            // recorremos hasta encontrar el último nodo
+            nodoAux = nodoAux->siguiente;
+        }
+        nodoAux->siguiente = nuevoNodo;  
+    }
+    return 0;
+}
