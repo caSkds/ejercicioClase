@@ -19,6 +19,7 @@ int buscar(struct lista *,int);
 int borrar(struct lista *,int);
 int size(struct lista *);
 void verLista(struct lista *);
+void borrarIndice(struct lista *, int);
 
 
 
