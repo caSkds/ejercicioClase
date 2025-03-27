@@ -159,3 +159,27 @@ void borrarIndice(struct lista* indiceLista, int indice)
     }
 
 }
+
+int insertarFinal(struct lista *insertarLista, int nuevoDato) {
+    struct nodo *nuevoNodo = (struct nodo *)malloc(sizeof(struct nodo));
+    if (nuevoNodo == NULL) {
+        printf("No se asignó memoria\n");
+        return -1;
+    }
+    nuevoNodo->dato = nuevoDato;
+
+    if (insertarLista->head == NULL) {  
+        // Si la lista está vacía el nuevo nodo va a apuntar a si mismo por head
+        insertarLista->head = nuevoNodo;
+        nuevoNodo->siguiente = insertarLista->head;
+    } else {
+        // vamos recorriendo desde el ultimo elemento agregado hasta el primero
+        struct nodo *nodoAux = insertarLista->head;
+        while (nodoAux->siguiente != insertarLista->head) {  
+            nodoAux = nodoAux->siguiente;
+        }
+        nodoAux->siguiente = nuevoNodo; // ultimo nodo ahora va apuntar al nuevonodo
+        nuevoNodo->siguiente = insertarLista->head; // el nuevo nodo ahora apunta a ahead
+    }
+    return 0;
+}
