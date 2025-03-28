@@ -140,7 +140,8 @@ void borrarIndice(struct lista* indiceLista, int indice)
     }
     struct nodo *nodoEliminar=indiceLista->head;
     struct nodo *nodoPrevio=NULL;
-    for(int i=0;i<=indice;i++)
+    int aux=size(indiceLista);
+    for(int i=aux-1;i>=indice;i--)
     {
         if(i==indice)
         {
@@ -159,7 +160,6 @@ void borrarIndice(struct lista* indiceLista, int indice)
     }
 
 }
-
 void verListaposicion(struct lista *verLista){
     if(verLista->head==NULL){
         printf("Lista Vacia\n");
@@ -168,7 +168,7 @@ void verListaposicion(struct lista *verLista){
         printf("Datos de la lista\n");
         int i=0;
         do{
-            printf("posicion%d:\t%d\n",i,verNodo->dato);
+            printf("posicion%d:\t%d\n",size(verLista)-i-1,verNodo->dato);
             verNodo=verNodo->siguiente;
             i++;
         }while(verNodo!=verLista->head);
