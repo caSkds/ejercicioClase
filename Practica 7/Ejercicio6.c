@@ -159,3 +159,20 @@ void borrarIndice(struct lista* indiceLista, int indice)
     }
 
 }
+
+void verListaposicion(struct lista *verLista){
+    if(verLista->head==NULL){
+        printf("Lista Vacia\n");
+    }else{
+        struct nodo *verNodo=verLista->head;
+        printf("Datos de la lista\n");
+        int i=0;
+        do{
+            printf("posicion%d:\t%d\n",i,verNodo->dato);
+            verNodo=verNodo->siguiente;
+            i++;
+        }while(verNodo!=verLista->head);
+    }
+    printf("\n");
+    
+}
