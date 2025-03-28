@@ -161,7 +161,8 @@ void borrarIndice(struct lista* indiceLista, int indice)
     }
     struct nodo *nodoEliminar=indiceLista->head;
     struct nodo *nodoPrevio=NULL;
-    for(int i=0;i<=indice;i++)
+    int aux=size(indiceLista);
+    for(int i=aux-1;i>=indice;i--)
     {
         if(i==indice)
         {
