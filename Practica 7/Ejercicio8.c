@@ -1,3 +1,7 @@
+#include "ListaCircular.h"
+#include <stdio.h>
+#include <stdlib.h>
+
 int main(){
     int ind;
     struct lista miLista;
@@ -140,7 +144,8 @@ void borrarIndice(struct lista* indiceLista, int indice)
     }
     struct nodo *nodoEliminar=indiceLista->head;
     struct nodo *nodoPrevio=NULL;
-    for(int i=0;i<=indice;i++)
+    int aux=size(indiceLista);
+    for(int i=aux-1;i>=indice;i--)
     {
         if(i==indice)
         {
@@ -168,11 +173,28 @@ void verListaposicion(struct lista *verLista){
         printf("Datos de la lista\n");
         int i=0;
         do{
-            printf("posicion%d:\t%d\n",i,verNodo->dato);
+            printf("posicion%d:\t%d\n",size(verLista)-i-1,verNodo->dato);
             verNodo=verNodo->siguiente;
             i++;
         }while(verNodo!=verLista->head);
     }
     printf("\n");
     
+}
+
+int size(struct lista *tamLista)
+{
+    int tam=0;
+    if(tamLista->head==NULL)
+    {
+        printf("Lista vacia\n");
+        return -1;
+    }
+    struct nodo *nodoTam=tamLista->head;
+    do
+    {
+        tam++;
+        nodoTam=nodoTam->siguiente;
+    }while(nodoTam !=tamLista->head);
+    return tam;
 }
