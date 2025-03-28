@@ -134,7 +134,7 @@ int insertarIndice(struct lista *nuevaLista, int nuevoDato, int posicion){
     }
     return 0;
 }
-nt insertarFinal(struct lista *insertarLista, int nuevoDato) {
+int insertarFinal(struct lista *insertarLista, int nuevoDato) {
     struct nodo *nuevoNodo = (struct nodo *)malloc(sizeof(struct nodo));
     nuevoNodo->dato = nuevoDato;
     nuevoNodo->siguiente = NULL;
