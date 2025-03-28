@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include "ListaSimple.h"
 
-#include<stdio.h>
-#include<stdlib.h>
+
 
 
 void crearLista(struct lista *nuevaLista){
