@@ -198,5 +198,36 @@ int insertarFinal(struct lista *insertarLista, int nuevoDato) {
         nodoAux->siguiente = nuevoNodo; // ultimo nodo ahora va apuntar al nuevonodo
         nuevoNodo->siguiente = insertarLista->head; // el nuevo nodo ahora apunta a ahead
     }
-    return 0;
+    return 0;
+}
+
+int insertarIndice(struct lista *inserted, int datum, int index){
+    int tamano = size(inserted);
+    if (index>tamano && tamano>0){
+        printf("Favor de introducir un índice menor al tamaño de la lista (tamaño: %d)\n", size(inserted));
+        return -1;
+        
+    }else if(tamano==0 &&index!=0){
+        printf("Lista vacía, el único índice posible es 0\n");
+    }
+    struct nodo *iterator = (struct nodo *)malloc(1*sizeof(struct nodo));
+    struct nodo *element  = (struct nodo *)malloc(1*sizeof(struct nodo));
+    if (iterator ==NULL || element ==NULL){
+        printf("No se pudo asignar memoria\n");
+        return -1;
+    }
+    element ->dato = datum;
+    if(index == 0){
+        insertar(inserted,datum);
+        free(element);
+        free(iterator);
+    return 0;
+    }
+    iterator = inserted->head;
+    for(int i =0; i<index-1; i++){
+        iterator = iterator->siguiente;
+    }
+    element ->siguiente = iterator->siguiente;
+    iterator ->siguiente = element;
+    return 0;
 }

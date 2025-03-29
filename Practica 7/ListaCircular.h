@@ -22,6 +22,7 @@ void verLista(struct lista *);
 void borrarIndice(struct lista *, int);
 int insertarFinal(struct lista *, int);
 void verListaposicion(struct lista *);
+int insertarIndice(struct lista *inserted, int datum, int index);
 
 
 
