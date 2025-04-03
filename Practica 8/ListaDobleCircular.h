@@ -18,11 +18,11 @@ struct lista{
 void crearLista(struct lista *);  //ya está
 int insertar(struct lista *,int); //ya está
 int buscar(struct lista *,int);  //ya está
-int borrar(struct lista *, int);
+int borrar(struct lista *, int);// ya está
 void verLista(struct lista *);//ya esta
 void verListaPosiciones(struct lista *);//ya esta
 struct nodo * buscarNodo(struct lista *,int); //ya está
-int borrarIndice(struct lista *,int);
+int borrarIndice(struct lista *,int);//ya está
 int sizeLista(struct lista *); //ya está
 
 #endif
