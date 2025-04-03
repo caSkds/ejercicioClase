@@ -101,6 +101,46 @@ void verListaPosiciones(struct lista *listaVer){
     printf("\n");
 }
 
+int borrar(struct lista *listaBorrar, int datoBorrar) {
+    if (listaBorrar->head == NULL) {
+        printf("Lista vacía\n");
+        return -1;
+    }
+
+    struct nodo *nodoEliminar = listaBorrar->head;
+    struct nodo *actual = listaBorrar->head;
+
+    //recorre lista
+    do {
+        if (actual->dato == datoBorrar) {
+            nodoEliminar = actual;
+            break;
+        }
+        actual = actual->siguiente;
+    } while (actual != listaBorrar->head);
+
+   
+    if (nodoEliminar->dato != datoBorrar) {
+        //si no hay nodos dentro
+        printf("Dato no encontrado\n");
+        return -1;
+    }
+    
+    if (nodoEliminar->siguiente == nodoEliminar) {
+        //si solo hay un nodo
+        listaBorrar->head = NULL;
+    } else {
+        if (nodoEliminar == listaBorrar->head) {
+            listaBorrar->head = nodoEliminar->siguiente; 
+        }
+        nodoEliminar->anterior->siguiente = nodoEliminar->siguiente;
+        nodoEliminar->siguiente->anterior = nodoEliminar->anterior;
+    }
+
+    listaBorrar->size--;
+    free(nodoEliminar);
+    return 0;
+}
 
 int borrarIndice(struct lista *listaBorrar, int indiceBorrar) {
     if (listaBorrar->head == NULL) {
