@@ -74,8 +74,6 @@ void verLista(struct lista *listaVer){
         printf("La lista esta vacia\n");
     }else{
         struct nodo *verNodo = listaVer->head;
-        printf("%d\n",verNodo->dato);
-        
         printf("Datos en la lista \n");
         do{
             printf("%d\n",verNodo->dato);
@@ -101,44 +99,38 @@ void verListaPosiciones(struct lista *listaVer){
     printf("\n");
 }
 
-int borrar(struct lista *listaBorrar, int datoBorrar) {
-    if (listaBorrar->head == NULL) {
+int borrar(struct lista *borrarLista,int datoBorrar){
+    if(borrarLista->head==NULL){
         printf("Lista vacia\n");
         return -1;
     }
+    struct nodo *nodoEliminar=borrarLista->head;
+    do{
+        if(nodoEliminar->dato==datoBorrar){
+            if(nodoEliminar == borrarLista->head){
+                if(nodoEliminar->siguiente == nodoEliminar){
+                    borrarLista->head=NULL;
+                }else{
+                    struct nodo *nodoTem = borrarLista->head;
+                    while(nodoTem->siguiente!=borrarLista->head){
+                        nodoTem=nodoTem->siguiente;
+                    }
+                    borrarLista->head=nodoEliminar->siguiente;
+                    nodoTem->siguiente=borrarLista->head;
+                    nodoEliminar->siguiente->anterior=nodoTem;
+                }
 
-    struct nodo *nodoEliminar = listaBorrar->head;
-    struct nodo *actual = listaBorrar->head;
-
-    //recorre lista
-    do {
-        if (actual->dato == datoBorrar) {
-            nodoEliminar = actual;
-            break;
+            }else{
+                nodoEliminar->anterior->siguiente=nodoEliminar->siguiente;
+                nodoEliminar->siguiente->anterior=nodoEliminar->anterior;
+            }
+            free(nodoEliminar);
+            borrarLista->size--;
+            return 0;
         }
-        actual = actual->siguiente;
-    } while (actual != listaBorrar->head);
+        nodoEliminar=nodoEliminar->siguiente;
 
-   
-    if (nodoEliminar->dato != datoBorrar) {
-        //si no hay nodos dentro
-        printf("Dato no encontrado\n");
-        return -1;
-    }
-    
-    if (nodoEliminar->siguiente == nodoEliminar) {
-        //si solo hay un nodo
-        listaBorrar->head = NULL;
-    } else {
-        if (nodoEliminar == listaBorrar->head) {
-            listaBorrar->head = nodoEliminar->siguiente; 
-        }
-        nodoEliminar->anterior->siguiente = nodoEliminar->siguiente;
-        nodoEliminar->siguiente->anterior = nodoEliminar->anterior;
-    }
-
-    listaBorrar->size--;
-    free(nodoEliminar);
+    }while(nodoEliminar!=borrarLista->head);
     return 0;
 }
 
