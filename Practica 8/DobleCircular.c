@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "ListaDobleCircular.h"
 
-
 void crearLista(struct lista *nuevaLista){
     nuevaLista->head=NULL;
     nuevaLista->size=0;
@@ -119,7 +118,6 @@ int borrar(struct lista *borrarLista,int datoBorrar){
                     nodoTem->siguiente=borrarLista->head;
                     nodoEliminar->siguiente->anterior=nodoTem;
                 }
-
             }else{
                 nodoEliminar->anterior->siguiente=nodoEliminar->siguiente;
                 nodoEliminar->siguiente->anterior=nodoEliminar->anterior;
@@ -129,7 +127,6 @@ int borrar(struct lista *borrarLista,int datoBorrar){
             return 0;
         }
         nodoEliminar=nodoEliminar->siguiente;
-
     }while(nodoEliminar!=borrarLista->head);
     return 0;
 }
@@ -139,38 +136,26 @@ int borrarIndice(struct lista *listaBorrar, int indiceBorrar) {
         printf("Lista vacia\n");
         return -1;
     }
-
     int tamano = listaBorrar->size;
-
-
     if (indiceBorrar < 0) { //ajustar indice a positivo
         indiceBorrar = tamano + indiceBorrar;  // desde final
     }
-
     indiceBorrar = (indiceBorrar % tamano + tamano) % tamano; //ajustar para que indice sea "valido"
-
     struct nodo *actual = listaBorrar->head;
     int contador = 0;
-
     while (contador < indiceBorrar) {
         actual = actual->siguiente;
         contador++;
     }
-
     struct nodo *nodoEliminar = actual;
-
- 
     if (nodoEliminar == listaBorrar->head) {    // Si el nodo a borrar es el head
         listaBorrar->head = nodoEliminar->siguiente;
     }
-
     nodoEliminar->anterior->siguiente = nodoEliminar->siguiente;
     nodoEliminar->siguiente->anterior = nodoEliminar->anterior;
-
     if (nodoEliminar->siguiente == nodoEliminar) {   // Si solo habia un nodo
         listaBorrar->head = NULL;
     }
-
     free(nodoEliminar);
     listaBorrar->size--; 
     return 0;
