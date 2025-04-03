@@ -103,7 +103,7 @@ void verListaPosiciones(struct lista *listaVer){
 
 int borrar(struct lista *listaBorrar, int datoBorrar) {
     if (listaBorrar->head == NULL) {
-        printf("Lista vacía\n");
+        printf("Lista vacia\n");
         return -1;
     }
 
@@ -144,7 +144,7 @@ int borrar(struct lista *listaBorrar, int datoBorrar) {
 
 int borrarIndice(struct lista *listaBorrar, int indiceBorrar) {
     if (listaBorrar->head == NULL) {
-        printf("Lista vacía\n");
+        printf("Lista vacia\n");
         return -1;
     }
 
