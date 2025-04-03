@@ -167,11 +167,11 @@ int borrarIndice(struct lista *listaBorrar, int indiceBorrar) {
     nodoEliminar->anterior->siguiente = nodoEliminar->siguiente;
     nodoEliminar->siguiente->anterior = nodoEliminar->anterior;
 
-    if (nodoEliminar->siguiente == nodoEliminar) {   // Si solo había un nodo, la lista estará vacía ahora
+    if (nodoEliminar->siguiente == nodoEliminar) {   // Si solo habia un nodo
         listaBorrar->head = NULL;
     }
 
     free(nodoEliminar);
-    listaBorrar->size--;  // Reducir el tamaño de la lista
+    listaBorrar->size--; 
     return 0;
 }
