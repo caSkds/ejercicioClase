@@ -16,12 +16,17 @@ int insertar(struct lista *insertarLista, int nuevoDato){
     nuevoNodo->dato=nuevoDato;
     if(insertarLista->head==NULL){
         insertarLista->head=nuevoNodo;
-        insertarLista->head->siguiente=insertarLista->head;
-        insertarLista->head->anterior=insertarLista->head;
+        insertarLista->head->siguiente=nuevoNodo;
+        insertarLista->head->anterior=nuevoNodo;
     }else{
+        struct nodo *nodoAux=insertarLista->head;
+        while(nodoAux->siguiente!=insertarLista->head){
+            nodoAux=nodoAux->siguiente;
+        }
         insertarLista->head->anterior=nuevoNodo;
         nuevoNodo->siguiente=insertarLista->head;
         insertarLista->head=nuevoNodo;
+        nodoAux->siguiente=insertarLista->head;
     }
     insertarLista->size++;
     return 0;
@@ -62,4 +67,36 @@ struct nodo * buscarNodo(struct lista *buscarLista, int buscarDato){
 
 int sizeLista(struct lista *sizeLista){
     return sizeLista->size;
+}
+
+void verLista(struct lista *listaVer){
+    if(listaVer->head==NULL){
+        printf("La lista esta vacia\n");
+    }else{
+        struct nodo *verNodo = listaVer->head;
+        printf("%d\n",verNodo->dato);
+        
+        printf("Datos en la lista \n");
+        do{
+            printf("%d\n",verNodo->dato);
+            verNodo=verNodo->siguiente;
+        }while(verNodo!=listaVer->head);
+    }
+    printf("\n");
+}
+
+void verListaPosiciones(struct lista *listaVer){
+    if(listaVer->head==NULL){
+        printf("La lista esta vacia\n");
+    }else{
+        struct nodo *verNodo = listaVer->head;
+        int indice=listaVer->size;
+        printf("Datos en la lista \n");
+        do{
+            printf("posicion:%d dato:%d\n",indice,verNodo->dato);
+            verNodo=verNodo->siguiente;
+            indice --;
+        }while(verNodo!=listaVer->head);
+    }
+    printf("\n");
 }
