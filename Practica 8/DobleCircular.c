@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "ListaDobleCircular.h"
 
+
 void crearLista(struct lista *nuevaLista){
     nuevaLista->head=NULL;
     nuevaLista->size=0;
@@ -18,17 +19,12 @@ int insertar(struct lista *insertarLista, int nuevoDato, int errorMsg){
     nuevoNodo->dato=nuevoDato;
     if(insertarLista->head==NULL){
         insertarLista->head=nuevoNodo;
-        insertarLista->head->siguiente=nuevoNodo;
-        insertarLista->head->anterior=nuevoNodo;
+        insertarLista->head->siguiente=insertarLista->head;
+        insertarLista->head->anterior=insertarLista->head;
     }else{
-        struct nodo *nodoAux=insertarLista->head;
-        while(nodoAux->siguiente!=insertarLista->head){
-            nodoAux=nodoAux->siguiente;
-        }
         insertarLista->head->anterior=nuevoNodo;
         nuevoNodo->siguiente=insertarLista->head;
         insertarLista->head=nuevoNodo;
-        nodoAux->siguiente=insertarLista->head;
     }
     insertarLista->size++;
     return 0;
@@ -85,95 +81,23 @@ int sizeLista(struct lista *sizeLista){
     return sizeLista->size;
 }
 
-void verLista(struct lista *listaVer){
-    if(listaVer->head==NULL){
-        printf("La lista esta vacia\n");
-    }else{
-        struct nodo *verNodo = listaVer->head;
-        printf("Datos en la lista \n");
-        do{
-            printf("%d\n",verNodo->dato);
-            verNodo=verNodo->siguiente;
-        }while(verNodo!=listaVer->head);
-    }
-    printf("\n");
-}
-
-void verListaPosiciones(struct lista *listaVer){
-    if(listaVer->head==NULL){
-        printf("La lista esta vacia\n");
-    }else{
-        struct nodo *verNodo = listaVer->head;
-        int indice=listaVer->size;
-        printf("Datos en la lista \n");
-        do{
-            printf("posicion:%d dato:%d\n",indice,verNodo->dato);
-            verNodo=verNodo->siguiente;
-            indice --;
-        }while(verNodo!=listaVer->head);
-    }
-    printf("\n");
-}
-
-int borrar(struct lista *borrarLista,int datoBorrar){
-    if(borrarLista->head==NULL){
-        printf("Lista vacia\n");
+int vaciarLista(struct lista *vaciarLista){
+    if (vaciarLista->head == NULL) {
+        printf("La lista esta vacia \n");
         return -1;
     }
-    struct nodo *nodoEliminar=borrarLista->head;
-    do{
-        if(nodoEliminar->dato==datoBorrar){
-            if(nodoEliminar == borrarLista->head){
-                if(nodoEliminar->siguiente == nodoEliminar){
-                    borrarLista->head=NULL;
-                }else{
-                    struct nodo *nodoTem = borrarLista->head;
-                    while(nodoTem->siguiente!=borrarLista->head){
-                        nodoTem=nodoTem->siguiente;
-                    }
-                    borrarLista->head=nodoEliminar->siguiente;
-                    nodoTem->siguiente=borrarLista->head;
-                    nodoEliminar->siguiente->anterior=nodoTem;
-                }
-            }else{
-                nodoEliminar->anterior->siguiente=nodoEliminar->siguiente;
-                nodoEliminar->siguiente->anterior=nodoEliminar->anterior;
-            }
-            free(nodoEliminar);
-            borrarLista->size--;
-            return 0;
-        }
-        nodoEliminar=nodoEliminar->siguiente;
-    }while(nodoEliminar!=borrarLista->head);
-    return 0;
-}
 
-int borrarIndice(struct lista *listaBorrar, int indiceBorrar) {
-    if (listaBorrar->head == NULL) {
-        printf("Lista vacia\n");
-        return -1;
-    }
-    int tamano = listaBorrar->size;
-    if (indiceBorrar < 0) { //ajustar indice a positivo
-        indiceBorrar = tamano + indiceBorrar;  // desde final
-    }
-    indiceBorrar = (indiceBorrar % tamano + tamano) % tamano; //ajustar para que indice sea "valido"
-    struct nodo *actual = listaBorrar->head;
-    int contador = 0;
-    while (contador < indiceBorrar) {
-        actual = actual->siguiente;
-        contador++;
-    }
-    struct nodo *nodoEliminar = actual;
-    if (nodoEliminar == listaBorrar->head) {    // Si el nodo a borrar es el head
-        listaBorrar->head = nodoEliminar->siguiente;
-    }
-    nodoEliminar->anterior->siguiente = nodoEliminar->siguiente;
-    nodoEliminar->siguiente->anterior = nodoEliminar->anterior;
-    if (nodoEliminar->siguiente == nodoEliminar) {   // Si solo habia un nodo
-        listaBorrar->head = NULL;
-    }
-    free(nodoEliminar);
-    listaBorrar->size--; 
+    struct nodo *actual = vaciarLista->head;
+    struct nodo *temp;
+
+    do {
+        temp = actual->siguiente;
+        free(actual);
+        actual = temp;
+    } while (actual != vaciarLista->head);
+
+    vaciarLista->head = NULL;
+    vaciarLista->size = 0;
+
     return 0;
 }
