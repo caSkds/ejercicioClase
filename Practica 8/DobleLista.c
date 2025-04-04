@@ -197,3 +197,8 @@ int borrarIndice(struct lista *listaBorrar,int indiceBorrar){
 int sizeLista(struct lista *listaSize){
     return listaSize->size;
 }  
+
+
+int insertarCualquierInidice(struct lista* listaInsertar, int dato){
+
+}
