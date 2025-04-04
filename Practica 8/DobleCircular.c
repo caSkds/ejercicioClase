@@ -8,9 +8,12 @@ void crearLista(struct lista *nuevaLista){
     nuevaLista->size=0;
 }
 
-int insertar(struct lista *insertarLista, int nuevoDato){
+int insertar(struct lista *insertarLista, int nuevoDato, int errorMsg){
     struct nodo *nuevoNodo=(struct nodo *)malloc(sizeof(struct nodo));
     if(nuevoNodo==NULL){
+        if(errorMsg ==1){
+            printf("No se pudo asignar memoria\n");
+        }
         return -1;
     }
     nuevoNodo->dato=nuevoDato;
@@ -26,9 +29,12 @@ int insertar(struct lista *insertarLista, int nuevoDato){
     insertarLista->size++;
     return 0;
 }
-int buscar(struct lista *buscarLista, int buscarDato){
+int buscar(struct lista *buscarLista, int buscarDato, int errorMsg){
     struct nodo *buscarNodo=(struct nodo*)malloc(sizeof(struct nodo));
     if(buscarNodo==NULL || buscarLista->head==NULL){
+        if(errorMsg ==1){
+            printf("No se pudo asignar memoria\n");
+        }
         return -1;
     }
     int iterations =0;
@@ -40,12 +46,20 @@ int buscar(struct lista *buscarLista, int buscarDato){
         iterations++;
     }}
     while(iterations<buscarLista->size);
+    
+    if(errorMsg ==1){
+            printf("Elemento no encontrado\n");
+        }
     return -1;
 }
 
-struct nodo * buscarNodo(struct lista *buscarLista, int buscarDato){
+
+struct nodo * buscarNodo(struct lista *buscarLista, int buscarDato, int errorMsg){
     struct nodo *buscarNodo=(struct nodo*)malloc(sizeof(struct nodo));
     if(buscarNodo==NULL || buscarLista->head==NULL){
+        if(errorMsg ==1){
+            printf("Lista vacía\n");
+        }
         return NULL;
     }
     int iterations =0;
@@ -57,6 +71,9 @@ struct nodo * buscarNodo(struct lista *buscarLista, int buscarDato){
         iterations++;
     }}
     while(iterations<buscarLista->size);
+    if(errorMsg ==1){
+        printf("Nodo no enontrado\n");
+    }
     return NULL;
 }
 
