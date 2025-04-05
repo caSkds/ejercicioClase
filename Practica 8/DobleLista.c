@@ -198,7 +198,61 @@ int sizeLista(struct lista *listaSize){
     return listaSize->size;
 }  
 
+/* insertarCualquierInidice
+Nombre de la Lista, índice, dato, mostrar error (1 para mostrar)*/
+int insertarCualquierInidice(struct lista* listaInsertar, int indice, int datum, int errorMsg){
+    
+    
+    
+    if (indice-1 >sizeLista(listaInsertar) || indice<0){
+        if(errorMsg ==1){
+            printf("Indice fuera de rango \n");
+        }
+        return -1;
+    }
+    //Assigning memory
+    struct nodo *aux = (struct nodo*)malloc(sizeof(struct nodo));
+    if (aux ==NULL){
+        if (errorMsg==1){
+            printf("No se pudo asignar memoria\n");
+            return -1;
+        }
+    }
+    aux ->dato = datum;
+    aux ->siguiente = NULL;
+    aux ->anterior = NULL;
+    //For an empty list
+    if(listaInsertar ->size ==-1){
+        listaInsertar->head = aux;  
+        listaInsertar->size++;
+        return 0;
+       
+    }else if(indice ==(listaInsertar->size+1)){
+        //For "appending" or inserting at an index equal to 1+ the number of elements
+        aux ->siguiente =listaInsertar->head;
+        listaInsertar->head->anterior = aux;
+        listaInsertar->head = aux;
+        listaInsertar->size++;
+        return 0;
+    }
+    struct nodo *iterator = listaInsertar->head;
+    for(int i = 0; i<(listaInsertar->size - indice);i++){
+        iterator =iterator->siguiente;
+    }
+    if (indice ==0 ){
+        //For inserting at beginning of the list
+        iterator->siguiente = aux;
+        listaInsertar->size++;
+        return 0;
+    }
+    else{
+        iterator ->siguiente ->anterior = aux;
+        aux ->siguiente = iterator ->siguiente ;
+        iterator ->siguiente= aux;
+        aux ->anterior = iterator;
+    }
 
-int insertarCualquierInidice(struct lista* listaInsertar, int dato){
+    listaInsertar->size++;
+    return 0;
 
 }
