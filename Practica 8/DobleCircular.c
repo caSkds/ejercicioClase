@@ -80,7 +80,7 @@ struct nodo * buscarNodo(struct lista *buscarLista, int buscarDato, int errorMsg
 int sizeLista(struct lista *sizeLista){
     return sizeLista->size;
 }
- int borrar(struct lista *borrarLista,int datoBorrar){
+ int borrar(struct lista *listaBorrar,int datoBorrar){
      if(borrarLista->head==NULL){
          printf("Lista vacia\n");
          return -1;
