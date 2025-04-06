@@ -27,5 +27,5 @@ struct nodo * buscarNodo(struct lista *,int);
 int borrarIndice(struct lista *,int);
 int sizeLista(struct lista *);
 int insertarCualquierInidice(struct lista*, int, int,int);
-
+int vaciarLista(struct lista*);
 #endif
