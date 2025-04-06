@@ -256,3 +256,24 @@ int insertarCualquierInidice(struct lista* listaInsertar, int indice, int datum,
     return 0;
 
 }
+
+int vaciarLista(struct lista *vaciarLista){
+    if (vaciarLista->head == NULL) {
+        printf("La lista esta vacia \n");
+        return -1;
+    }
+
+    struct nodo *actual = vaciarLista->head;
+    struct nodo *temp;
+
+    do {
+        temp = actual->siguiente;
+        free(actual);
+        actual = temp;
+    } while (actual != NULL);
+
+    vaciarLista->head = NULL;
+    vaciarLista->size = 0;
+
+    return 0;
+}
