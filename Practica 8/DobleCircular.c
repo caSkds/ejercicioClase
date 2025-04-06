@@ -22,6 +22,8 @@ int insertar(struct lista *insertarLista, int nuevoDato, int errorMsg){
         insertarLista->head->siguiente=insertarLista->head;
         insertarLista->head->anterior=insertarLista->head;
     }else{
+        nuevoNodo->anterior=insertarLista->head->anterior;
+        insertarLista->head->anterior->siguiente=nuevoNodo;
         insertarLista->head->anterior=nuevoNodo;
         nuevoNodo->siguiente=insertarLista->head;
         insertarLista->head=nuevoNodo;
