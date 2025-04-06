@@ -80,37 +80,11 @@ struct nodo * buscarNodo(struct lista *buscarLista, int buscarDato, int errorMsg
 int sizeLista(struct lista *sizeLista){
     return sizeLista->size;
 }
- int borrar(struct lista *listaBorrar,int datoBorrar){
+int borrar(struct lista *borrarLista,int datoBorrar){
      if(borrarLista->head==NULL){
          printf("Lista vacia\n");
          return -1;
      }
- 
-     struct nodo *nodoEliminar = listaBorrar->head;
-     struct nodo *actual = listaBorrar->head;
- 
-     //recorre lista
-     do {
-         if (actual->dato == datoBorrar) {
-             nodoEliminar = actual;
-             break;
-         }
-         actual = actual->siguiente;
-     } while (actual != listaBorrar->head);
- 
-    
-     if (nodoEliminar->dato != datoBorrar) {
-         //si no hay nodos dentro
-         printf("Dato no encontrado\n");
-         return -1;
-     }
-     
-     if (nodoEliminar->siguiente == nodoEliminar) {
-         //si solo hay un nodo
-         listaBorrar->head = NULL;
-     } else {
-         if (nodoEliminar == listaBorrar->head) {
-             listaBorrar->head = nodoEliminar->siguiente; 
      struct nodo *nodoEliminar=borrarLista->head;
      do{
          if(nodoEliminar->dato==datoBorrar){
@@ -126,7 +100,7 @@ int sizeLista(struct lista *sizeLista){
                      nodoTem->siguiente=borrarLista->head;
                      nodoEliminar->siguiente->anterior=nodoTem;
                  }
- 
+
              }else{
                  nodoEliminar->anterior->siguiente=nodoEliminar->siguiente;
                  nodoEliminar->siguiente->anterior=nodoEliminar->anterior;
@@ -135,14 +109,51 @@ int sizeLista(struct lista *sizeLista){
              borrarLista->size--;
              return 0;
          }
-         nodoEliminar->anterior->siguiente = nodoEliminar->siguiente;
-         nodoEliminar->siguiente->anterior = nodoEliminar->anterior;
-     }
          nodoEliminar=nodoEliminar->siguiente;
- 
-     listaBorrar->size--;
-     free(nodoEliminar);
+
      }while(nodoEliminar!=borrarLista->head);
+     return 0;
+ }
+
+int borrarIndice(struct lista *listaBorrar, int indiceBorrar) {
+     if (listaBorrar->head == NULL) {
+         printf("Lista vacia\n");
+         return -1;
+     }
+
+     int tamano = listaBorrar->size;
+
+
+     if (indiceBorrar < 0) { //ajustar indice a positivo
+         indiceBorrar = tamano + indiceBorrar;  // desde final
+     }
+
+     indiceBorrar = (indiceBorrar % tamano + tamano) % tamano; //ajustar para que indice sea "valido"
+
+     struct nodo *actual = listaBorrar->head;
+     int contador = 0;
+
+     while (contador < indiceBorrar) {
+         actual = actual->siguiente;
+         contador++;
+     }
+
+     struct nodo *nodoEliminar = actual;
+
+
+     if (nodoEliminar == listaBorrar->head) {    // Si el nodo a borrar es el head
+         listaBorrar->head = nodoEliminar->siguiente;
+     }
+
+     nodoEliminar->anterior->siguiente = nodoEliminar->siguiente;
+     nodoEliminar->siguiente->anterior = nodoEliminar->anterior;
+
+     if (nodoEliminar->siguiente == nodoEliminar) {   // Si solo habia un nodo
+         listaBorrar->head = NULL;
+     }
+
+     free(nodoEliminar);
+     listaBorrar->size--;
      return 0;
  }
 int vaciarLista(struct lista *vaciarLista){
