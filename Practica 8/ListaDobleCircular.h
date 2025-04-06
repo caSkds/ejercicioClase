@@ -19,8 +19,8 @@ void crearLista(struct lista *);  //ya está
 int insertar(struct lista *,int,int); //ya está
 int buscar(struct lista *,int,int);  //ya está
 int borrar(struct lista *, int);
-void verLista(struct lista *);
-void verListaPosiciones(struct lista *);
+void verLista(struct lista *); //ya está
+void verListaPosiciones(struct lista *); //Ya está
 struct nodo * buscarNodo(struct lista *,int, int); //ya está
 int borrarIndice(struct lista *,int);
 int sizeLista(struct lista *); //ya está
