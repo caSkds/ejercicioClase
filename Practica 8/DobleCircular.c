@@ -80,7 +80,71 @@ struct nodo * buscarNodo(struct lista *buscarLista, int buscarDato, int errorMsg
 int sizeLista(struct lista *sizeLista){
     return sizeLista->size;
 }
-
+ int borrar(struct lista *borrarLista,int datoBorrar){
+     if(borrarLista->head==NULL){
+         printf("Lista vacia\n");
+         return -1;
+     }
+ 
+     struct nodo *nodoEliminar = listaBorrar->head;
+     struct nodo *actual = listaBorrar->head;
+ 
+     //recorre lista
+     do {
+         if (actual->dato == datoBorrar) {
+             nodoEliminar = actual;
+             break;
+         }
+         actual = actual->siguiente;
+     } while (actual != listaBorrar->head);
+ 
+    
+     if (nodoEliminar->dato != datoBorrar) {
+         //si no hay nodos dentro
+         printf("Dato no encontrado\n");
+         return -1;
+     }
+     
+     if (nodoEliminar->siguiente == nodoEliminar) {
+         //si solo hay un nodo
+         listaBorrar->head = NULL;
+     } else {
+         if (nodoEliminar == listaBorrar->head) {
+             listaBorrar->head = nodoEliminar->siguiente; 
+     struct nodo *nodoEliminar=borrarLista->head;
+     do{
+         if(nodoEliminar->dato==datoBorrar){
+             if(nodoEliminar == borrarLista->head){
+                 if(nodoEliminar->siguiente == nodoEliminar){
+                     borrarLista->head=NULL;
+                 }else{
+                     struct nodo *nodoTem = borrarLista->head;
+                     while(nodoTem->siguiente!=borrarLista->head){
+                         nodoTem=nodoTem->siguiente;
+                     }
+                     borrarLista->head=nodoEliminar->siguiente;
+                     nodoTem->siguiente=borrarLista->head;
+                     nodoEliminar->siguiente->anterior=nodoTem;
+                 }
+ 
+             }else{
+                 nodoEliminar->anterior->siguiente=nodoEliminar->siguiente;
+                 nodoEliminar->siguiente->anterior=nodoEliminar->anterior;
+             }
+             free(nodoEliminar);
+             borrarLista->size--;
+             return 0;
+         }
+         nodoEliminar->anterior->siguiente = nodoEliminar->siguiente;
+         nodoEliminar->siguiente->anterior = nodoEliminar->anterior;
+     }
+         nodoEliminar=nodoEliminar->siguiente;
+ 
+     listaBorrar->size--;
+     free(nodoEliminar);
+     }while(nodoEliminar!=borrarLista->head);
+     return 0;
+ }
 int vaciarLista(struct lista *vaciarLista){
     if (vaciarLista->head == NULL) {
         printf("La lista esta vacia \n");
