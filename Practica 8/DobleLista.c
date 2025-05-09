@@ -257,6 +257,9 @@ int insertarCualquierInidice(struct lista* listaInsertar, int indice, int datum,
 
 }
 
+int insertarFinal (struct lista *insertarLista, int nuevoDato){
+    return insertarCualquierInidice(insertarLista,sizeLista(insertarLista)+1,nuevoDato,0);
+}
 int vaciarLista(struct lista *vaciarLista){
     if (vaciarLista->head == NULL) {
         printf("La lista esta vacia \n");
